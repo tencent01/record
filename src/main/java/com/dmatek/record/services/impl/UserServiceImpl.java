@@ -26,6 +26,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean updateUserPassword(String username, String password) {
+        System.out.println(password);
         return userMapper.updateUserPassword(username,password);
     }
 }

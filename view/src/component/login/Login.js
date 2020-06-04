@@ -116,7 +116,7 @@ class Login extends Component {
                 return response.json();
             }).then(
                 data=>{
-                    if(data==1){
+                    if(data==0){
                         this.onHandleClick();
                     }
                     console.log(data);
