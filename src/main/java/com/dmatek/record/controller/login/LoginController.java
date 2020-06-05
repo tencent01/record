@@ -2,6 +2,7 @@ package com.dmatek.record.controller.login;
 
 import com.alibaba.fastjson.JSONObject;
 import com.dmatek.record.bean.User;
+import com.dmatek.record.config.SecurityConfig;
 import com.dmatek.record.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +20,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class LoginController {
 
-    Logger logger= LoggerFactory.getLogger(LoginController.class);
+    private final static Logger logger= LoggerFactory.getLogger(LoginController.class);
+    private final static String TAG="user";
 
     @Autowired
     private UserService userService;
@@ -27,7 +29,7 @@ public class LoginController {
     @CrossOrigin
     @PostMapping("login")
     public int login(@RequestBody User user){
-        logger.info(user.toString());
+        logger.info(TAG+"/login:"+user.toString());
         User user1=userService.selectUserByUsername(user.getUsername(),user.getPassword());
         if(user1!=null){
             return 0;
@@ -50,8 +52,8 @@ public class LoginController {
             logger.info("not null");
             User user=userService.selectUserByUsername(username,oldpassword);
             logger.info("not null");
-            logger.info(user.toString());
             if(user!=null){
+                logger.info(user.toString());
                 boolean ok=userService.updateUserPassword(user.getUsername(),password);
                 logger.info(ok+"");
                 return 0;
@@ -61,15 +63,23 @@ public class LoginController {
     }
 
     @CrossOrigin
-    @GetMapping("")
-    public String getLogin(){
-        logger.info("login");
-        return "a";
+    @GetMapping("login/page")
+    public String getLoginPage(){
+        logger.info(TAG+"/login/page:");
+        return "this is login page";
     }
 
-    @RequestMapping
-    public String get1Login(){
-        logger.info("login");
-        return "a";
+    @CrossOrigin
+    @GetMapping("login/test")
+    public String getLoginTest(){
+        logger.info(TAG+"/login/test:");
+        return "this is test page";
+    }
+
+    @CrossOrigin
+    @GetMapping("login/error")
+    public String getLoginError(){
+        logger.info(TAG+"/login/error:");
+        return "this is login error page";
     }
 }

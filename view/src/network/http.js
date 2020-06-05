@@ -17,7 +17,26 @@ export function httpPost(url,param) {
         headers: {
             'user-agent': 'Mozilla/4.0 MDN Example',
             // 'content-type': 'application/x-www-form-urlencoded'
-            'content-Type': 'application/json'
+            'content-Type': 'application/json',
+        },
+        // mode: 'cors', // no-cors, cors, *same-origin
+        // redirect: 'follow', // manual, *follow, error
+        // referrer: 'no-referrer', // *client, no-referrer
+    })
+
+}
+
+export function httpTokenPost(url,param,token) {
+    return fetch(url,{
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        body: JSON.stringify(param), // must match 'Content-Type' header
+        // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        // credentials: 'same-origin', // include, same-origin, *omit
+        headers: {
+            'user-agent': 'Mozilla/4.0 MDN Example',
+            // 'content-type': 'application/x-www-form-urlencoded'
+            'content-Type': 'application/json',
+            "x-csrf-token": token,
         },
         // mode: 'cors', // no-cors, cors, *same-origin
         // redirect: 'follow', // manual, *follow, error

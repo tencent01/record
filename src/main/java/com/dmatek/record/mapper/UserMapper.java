@@ -17,6 +17,9 @@ public interface UserMapper {
     @Select("select id id,name username,password from user where name=#{username} and password=#{password}")
     User selectUserByUsername(String username,String password);
 
+    @Select("select id,name username,password from user where name=#{username}")
+    User loadUserByUsername(String username);
+
     @Update("update user set password=#{password} where name=#{username}")
     boolean updateUserPassword(String username,String password);
 

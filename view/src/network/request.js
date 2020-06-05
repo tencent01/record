@@ -1,4 +1,4 @@
-import {httpGet, httpPost} from "./http";
+import {httpGet, httpPost,httpTokenPost} from "./http";
 import url from "./url";
 
 const request={
@@ -8,6 +8,10 @@ const request={
 
     login(param){
         return httpPost(url.home+url.user+url.login,param);
+    },
+
+    tokenLogin(param,token){
+        return httpTokenPost(url.home+url.user+url.login,param,token);
     },
 
     updatePassword(param){
