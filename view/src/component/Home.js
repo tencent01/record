@@ -3,6 +3,8 @@ import Login from "./login/Login";
 import { Button, Tooltip } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import UpdatePassword from "./login/UpdatePassword";
+import ProblemMenu from "./home/ProblemMenu";
+import MenuTree from "./home/MenuTree";
 
 class Home extends Component {
 
@@ -49,6 +51,7 @@ class Home extends Component {
                 </Button>
                 {loginView}
                 {updatePassword}
+                <MenuTree></MenuTree>
             </div>
         );
     }
