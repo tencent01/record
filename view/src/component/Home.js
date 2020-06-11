@@ -4,7 +4,14 @@ import { Button, Tooltip } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import UpdatePassword from "./login/UpdatePassword";
 import ProblemMenu from "./home/ProblemMenu";
-import MenuTree from "./home/MenuTree";
+import MenuTree from "./tools/MenuTree";
+import MenuJsTree from "./tools/MenuJsTree";
+import RightClickContextMenu from "./tools/RightClickContextMenu";
+import MenuAndTree from "./tools/MenuAndTree";
+import CkEditorDome from "./tools/CKEditorDome";
+import MainForm from "./destop/MainForm";
+import WangEditorDome from "./tools/WangEditorDome";
+import CreateBlog from "./home/CreateBlog";
 
 class Home extends Component {
 
@@ -46,12 +53,14 @@ class Home extends Component {
         let updatePassword=this.state.showUpdatePassword?<UpdatePassword showUpdatePassword={this.showUpdatePassword}></UpdatePassword>:"";
         return (
             <div>
-                <Button type="primary" shape="circle" size="large"  onClick={e => this.onClick(e)}  className="btn btn-primary float-right mr-5 mt-3">
+                <Button type="primary" shape="circle" size="large"  onClick={e => this.onClick(e)}  className="btn btn-primary float-right mr-5 mt-3" >
                     登录
                 </Button>
+                <MenuAndTree></MenuAndTree>
+                <CreateBlog></CreateBlog>
                 {loginView}
                 {updatePassword}
-                <MenuTree></MenuTree>
+                {/*<MenuTree></MenuTree>*/}
             </div>
         );
     }

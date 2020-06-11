@@ -3578,3 +3578,6 @@ Unconditional classes:
 2020-06-05 17:12:18.827  INFO 18568 --- [https-jsse-nio-443-exec-1] c.d.r.controller.login.LoginController   : user/login:User{id=0, username='admin', password='aaaaaa'}
 2020-06-05 17:12:18.827  INFO 18568 --- [https-jsse-nio-443-exec-1] c.d.r.services.impl.UserServiceImpl      : selectUserByUsername
 2020-06-05 17:12:18.836  INFO 18568 --- [https-jsse-nio-443-exec-1] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-05 18:54:47.298  INFO 18568 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-06-05 18:54:47.728  INFO 18568 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2020-06-05 18:54:47.738  INFO 18568 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed

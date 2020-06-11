@@ -4,6 +4,10 @@ const url={
     login:"/login",
     update:"/update",
     password:"/password",
+    file:"/file",
+    get:"/get",
+    all:"/all",
+    read:"/read",
 
 }
 

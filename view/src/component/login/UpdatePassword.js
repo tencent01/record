@@ -152,7 +152,7 @@ class UpdatePassword extends Component {
         };
 
         return (
-            <div style={{width:'1px',height:'0px'} }>
+            <div style={{width:'1px',height:'0px'} } className="position-fixed">
                 <div
                     style={{transform: `translateX(${this.state.translateX}px)translateY(${this.state.translateY}px)`}}
                 >
@@ -162,6 +162,8 @@ class UpdatePassword extends Component {
                             onTouchStart={e => this.onMouseDown(e)}
                             onMouseOut={e=>this.onMouseOut(e)}
                             onMouseOver={e=>this.onMouseOver(e)}
+                            onMouseUp={e=>this.onMouseUp(e)}
+                            onMouseMove={e=>this.onMouseMove(e)}
                             className="pb-5"
                             style={{cursor:cursorStyle.cursor, width: '100%', height: 20, backgroundColor: 'white' }}
                         >

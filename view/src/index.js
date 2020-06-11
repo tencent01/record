@@ -7,6 +7,7 @@ import Home from "./component/Home";
 import 'antd/dist/antd.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap';
+import 'jstree/dist/themes/default/style.min.css';
 
 ReactDOM.render(
   /*<React.StrictMode>*/

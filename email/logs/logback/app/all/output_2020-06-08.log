@@ -1,0 +1,186 @@
+2020-06-08 13:46:15.784  INFO 9204 --- [restartedMain] com.dmatek.record.RecordApplication      : Starting RecordApplication on AUTOBVT-5NHF7EU with PID 9204 (G:\Users\git\IdeaProjects\record\target\classes started by Administrator in G:\Users\git\IdeaProjects\record)
+2020-06-08 13:46:15.799  INFO 9204 --- [restartedMain] com.dmatek.record.RecordApplication      : The following profiles are active: datasource
+2020-06-08 13:46:15.859  INFO 9204 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-06-08 13:46:15.860  INFO 9204 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-06-08 13:46:17.546  INFO 9204 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 443 (https)
+2020-06-08 13:46:17.555  INFO 9204 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["https-jsse-nio-443"]
+2020-06-08 13:46:17.556  INFO 9204 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-06-08 13:46:17.556  INFO 9204 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.35]
+2020-06-08 13:46:17.624  INFO 9204 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-06-08 13:46:17.624  INFO 9204 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1764 ms
+2020-06-08 13:46:17.675  INFO 9204 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2020-06-08 13:46:17.815  INFO 9204 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-06-08 13:46:17.930  INFO 9204 --- [restartedMain] c.d.r.filter.FilterSecurityInterceptor   : set AccessDecisionManagerImpl
+2020-06-08 13:46:17.931  INFO 9204 --- [restartedMain] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-08 13:46:17.931  INFO 9204 --- [restartedMain] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-08 13:46:17.931  INFO 9204 --- [restartedMain] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-08 13:46:17.931  INFO 9204 --- [restartedMain] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-08 13:46:17.931  INFO 9204 --- [restartedMain] ocationSecurityMetadataSourceServiceImpl : 是否能够为指定的方法调用或Web请求提供
+2020-06-08 13:46:17.932  INFO 9204 --- [restartedMain] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-08 13:46:17.932  INFO 9204 --- [restartedMain] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-08 13:46:17.932  INFO 9204 --- [restartedMain] c.d.r.manager.AccessDecisionManagerImpl  : decide 当前AccessDecisionManager实现是否能够为指定的安全对象（方法调用或Web请求）提供访问控制决策
+2020-06-08 13:46:17.932  INFO 9204 --- [restartedMain] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-08 13:46:17.932  INFO 9204 --- [restartedMain] ocationSecurityMetadataSourceServiceImpl : 请求与权限的对应关系也要在这个方法里初始化
+2020-06-08 13:46:17.933  WARN 9204 --- [restartedMain] c.d.r.filter.FilterSecurityInterceptor   : Could not validate configuration attributes as the SecurityMetadataSource did not return any attributes from getAllConfigAttributes()
+2020-06-08 13:46:18.076  INFO 9204 --- [restartedMain] com.dmatek.record.config.SecurityConfig  : configureGlobal
+2020-06-08 13:46:18.206  INFO 9204 --- [restartedMain] com.dmatek.record.config.SecurityConfig  : configure 配置url
+2020-06-08 13:46:18.268  INFO 9204 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@72d9fbec, org.springframework.security.web.context.SecurityContextPersistenceFilter@68a5e52c, org.springframework.security.web.header.HeaderWriterFilter@6a9d27b9, org.springframework.security.web.authentication.logout.LogoutFilter@323497ae, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@53a0b556, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@635f679c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@54a10b91, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7d9f416c, org.springframework.security.web.session.SessionManagementFilter@3b9f652e, org.springframework.security.web.access.ExceptionTranslationFilter@4a180e4a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@45740204]
+2020-06-08 13:46:18.365  INFO 9204 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-08 13:46:18.656  INFO 9204 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-06-08 13:46:18.674  INFO 9204 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["https-jsse-nio-443"]
+2020-06-08 13:46:19.066  INFO 9204 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 443 (https) with context path ''
+2020-06-08 13:46:19.077  INFO 9204 --- [restartedMain] com.dmatek.record.RecordApplication      : Started RecordApplication in 4.276 seconds (JVM running for 12.626)
+2020-06-08 14:01:23.756  INFO 9204 --- [https-jsse-nio-443-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-08 14:01:23.757  INFO 9204 --- [https-jsse-nio-443-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-06-08 14:01:23.765  INFO 9204 --- [https-jsse-nio-443-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+2020-06-08 14:01:23.802  INFO 9204 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-08 14:01:23.802  INFO 9204 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-08 14:01:23.803  INFO 9204 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-08 14:01:23.803  INFO 9204 --- [https-jsse-nio-443-exec-3] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-08 14:01:24.155  INFO 9204 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-08 14:01:24.242  INFO 9204 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-08 14:01:24.250  INFO 9204 --- [https-jsse-nio-443-exec-4] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-08 14:01:24.250  INFO 9204 --- [https-jsse-nio-443-exec-4] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-08 14:01:24.251  INFO 9204 --- [https-jsse-nio-443-exec-4] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-08 14:01:24.251  INFO 9204 --- [https-jsse-nio-443-exec-4] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-08 14:01:24.251  INFO 9204 --- [https-jsse-nio-443-exec-4] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-08 14:01:24.465  INFO 9204 --- [https-jsse-nio-443-exec-4] c.d.r.controller.login.LoginController   : user/login:User{id=0, username='admin', password='cccccc'}
+2020-06-08 14:01:24.465  INFO 9204 --- [https-jsse-nio-443-exec-4] c.d.r.services.impl.UserServiceImpl      : selectUserByUsername
+2020-06-08 14:01:24.472  INFO 9204 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-08 14:01:24.472  INFO 9204 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-08 14:01:24.475  INFO 9204 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-08 14:01:24.475  INFO 9204 --- [https-jsse-nio-443-exec-6] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-08 14:01:24.475  INFO 9204 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-08 14:01:24.477  INFO 9204 --- [https-jsse-nio-443-exec-6] c.d.r.controller.login.LoginController   : user/login:User{id=0, username='admin', password='cccccc'}
+2020-06-08 14:01:24.477  INFO 9204 --- [https-jsse-nio-443-exec-6] c.d.r.services.impl.UserServiceImpl      : selectUserByUsername
+2020-06-08 14:01:24.598  INFO 9204 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-08 14:01:24.599  INFO 9204 --- [https-jsse-nio-443-exec-4] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-08 14:01:31.563  INFO 9204 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-08 14:01:31.563  INFO 9204 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-08 14:01:31.563  INFO 9204 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-08 14:01:31.564  INFO 9204 --- [https-jsse-nio-443-exec-2] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-08 14:01:31.564  INFO 9204 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-08 14:01:31.568  INFO 9204 --- [https-jsse-nio-443-exec-2] c.d.r.controller.login.LoginController   : user/login:User{id=0, username='admin', password='aaaaaa'}
+2020-06-08 14:01:31.568  INFO 9204 --- [https-jsse-nio-443-exec-2] c.d.r.services.impl.UserServiceImpl      : selectUserByUsername
+2020-06-08 14:01:31.583  INFO 9204 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-08 16:57:57.318  INFO 9204 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-08 16:57:57.318  INFO 9204 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-08 16:57:57.318  INFO 9204 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-08 16:57:57.318  INFO 9204 --- [https-jsse-nio-443-exec-10] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-08 16:57:57.319  INFO 9204 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-08 16:57:57.320  INFO 9204 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-08 16:57:57.323  INFO 9204 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-08 16:57:57.324  INFO 9204 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-08 16:57:57.324  INFO 9204 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-08 16:57:57.324  INFO 9204 --- [https-jsse-nio-443-exec-6] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-08 16:57:57.324  INFO 9204 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-08 16:57:57.325  INFO 9204 --- [https-jsse-nio-443-exec-6] c.d.r.controller.login.LoginController   : user/login:User{id=0, username='admin', password='aaaaaa'}
+2020-06-08 16:57:57.325  INFO 9204 --- [https-jsse-nio-443-exec-6] c.d.r.services.impl.UserServiceImpl      : selectUserByUsername
+2020-06-08 16:57:57.629  INFO 9204 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-08 16:58:11.744  INFO 9204 --- [https-jsse-nio-443-exec-4] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-08 16:58:11.746  INFO 9204 --- [https-jsse-nio-443-exec-4] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-08 16:58:11.747  INFO 9204 --- [https-jsse-nio-443-exec-4] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-08 16:58:11.747  INFO 9204 --- [https-jsse-nio-443-exec-4] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-08 16:58:11.747  INFO 9204 --- [https-jsse-nio-443-exec-4] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-08 16:58:11.750  INFO 9204 --- [https-jsse-nio-443-exec-4] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-08 16:58:11.757  INFO 9204 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-08 16:58:11.758  INFO 9204 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-08 16:58:11.758  INFO 9204 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-08 16:58:11.759  INFO 9204 --- [https-jsse-nio-443-exec-2] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-08 16:58:11.759  INFO 9204 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-08 16:58:12.060  INFO 9204 --- [https-jsse-nio-443-exec-2] c.d.r.controller.login.LoginController   : update/passwordadmin
+2020-06-08 16:58:12.060  INFO 9204 --- [https-jsse-nio-443-exec-2] c.d.r.controller.login.LoginController   : update/passwordaaaaaa
+2020-06-08 16:58:12.060  INFO 9204 --- [https-jsse-nio-443-exec-2] c.d.r.controller.login.LoginController   : update/passwordcccccc
+2020-06-08 16:58:12.060  INFO 9204 --- [https-jsse-nio-443-exec-2] c.d.r.controller.login.LoginController   : not null
+2020-06-08 16:58:12.060  INFO 9204 --- [https-jsse-nio-443-exec-2] c.d.r.services.impl.UserServiceImpl      : selectUserByUsername
+2020-06-08 16:58:12.062  INFO 9204 --- [https-jsse-nio-443-exec-2] c.d.r.controller.login.LoginController   : not null
+2020-06-08 16:58:12.063  INFO 9204 --- [https-jsse-nio-443-exec-2] c.d.r.controller.login.LoginController   : User{id=1, username='admin', password='aaaaaa'}
+2020-06-08 16:58:12.063  INFO 9204 --- [https-jsse-nio-443-exec-2] c.d.r.services.impl.UserServiceImpl      : updateUserPassword
+2020-06-08 16:58:12.708  INFO 9204 --- [https-jsse-nio-443-exec-2] c.d.r.controller.login.LoginController   : true
+2020-06-08 16:58:12.714  INFO 9204 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-08 16:58:21.484  INFO 9204 --- [https-jsse-nio-443-exec-7] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-08 16:58:21.484  INFO 9204 --- [https-jsse-nio-443-exec-7] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-08 16:58:21.484  INFO 9204 --- [https-jsse-nio-443-exec-7] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-08 16:58:21.484  INFO 9204 --- [https-jsse-nio-443-exec-7] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-08 16:58:21.485  INFO 9204 --- [https-jsse-nio-443-exec-7] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-08 16:58:21.487  INFO 9204 --- [https-jsse-nio-443-exec-7] c.d.r.controller.login.LoginController   : user/login:User{id=0, username='admin', password='cccccc'}
+2020-06-08 16:58:21.487  INFO 9204 --- [https-jsse-nio-443-exec-7] c.d.r.services.impl.UserServiceImpl      : selectUserByUsername
+2020-06-08 16:58:21.492  INFO 9204 --- [https-jsse-nio-443-exec-7] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-08 17:28:20.368  INFO 9204 --- [https-jsse-nio-443-exec-4] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-08 17:28:20.368  INFO 9204 --- [https-jsse-nio-443-exec-4] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-08 17:28:20.369  INFO 9204 --- [https-jsse-nio-443-exec-4] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-08 17:28:20.369  INFO 9204 --- [https-jsse-nio-443-exec-4] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-08 17:28:20.369  INFO 9204 --- [https-jsse-nio-443-exec-4] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-08 17:28:20.435  INFO 9204 --- [https-jsse-nio-443-exec-4] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-08 17:28:20.442  INFO 9204 --- [https-jsse-nio-443-exec-7] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-08 17:28:20.442  INFO 9204 --- [https-jsse-nio-443-exec-7] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-08 17:28:20.442  INFO 9204 --- [https-jsse-nio-443-exec-7] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-08 17:28:20.442  INFO 9204 --- [https-jsse-nio-443-exec-7] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-08 17:28:20.442  INFO 9204 --- [https-jsse-nio-443-exec-7] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-08 17:28:20.445  INFO 9204 --- [https-jsse-nio-443-exec-7] c.d.r.controller.login.LoginController   : user/login:User{id=0, username='admin', password='aaaaaa'}
+2020-06-08 17:28:20.445  INFO 9204 --- [https-jsse-nio-443-exec-7] c.d.r.services.impl.UserServiceImpl      : selectUserByUsername
+2020-06-08 17:28:20.632  INFO 9204 --- [https-jsse-nio-443-exec-7] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-08 17:28:26.696  INFO 9204 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-08 17:28:26.697  INFO 9204 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-08 17:28:26.698  INFO 9204 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-08 17:28:26.698  INFO 9204 --- [https-jsse-nio-443-exec-3] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-08 17:28:26.698  INFO 9204 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-08 17:28:26.701  INFO 9204 --- [https-jsse-nio-443-exec-3] c.d.r.controller.login.LoginController   : user/login:User{id=0, username='admin', password='cccccc'}
+2020-06-08 17:28:26.702  INFO 9204 --- [https-jsse-nio-443-exec-3] c.d.r.services.impl.UserServiceImpl      : selectUserByUsername
+2020-06-08 17:28:26.705  INFO 9204 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-08 17:28:41.233  INFO 9204 --- [https-jsse-nio-443-exec-1] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-08 17:28:41.234  INFO 9204 --- [https-jsse-nio-443-exec-1] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-08 17:28:41.235  INFO 9204 --- [https-jsse-nio-443-exec-1] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-08 17:28:41.235  INFO 9204 --- [https-jsse-nio-443-exec-1] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-08 17:28:41.236  INFO 9204 --- [https-jsse-nio-443-exec-1] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-08 17:28:41.237  INFO 9204 --- [https-jsse-nio-443-exec-1] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-08 17:28:41.244  INFO 9204 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-08 17:28:41.244  INFO 9204 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-08 17:28:41.245  INFO 9204 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-08 17:28:41.249  INFO 9204 --- [https-jsse-nio-443-exec-9] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-08 17:28:41.249  INFO 9204 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-08 17:28:41.250  INFO 9204 --- [https-jsse-nio-443-exec-9] c.d.r.controller.login.LoginController   : update/passwordadmin
+2020-06-08 17:28:41.250  INFO 9204 --- [https-jsse-nio-443-exec-9] c.d.r.controller.login.LoginController   : update/passwordcccccc
+2020-06-08 17:28:41.250  INFO 9204 --- [https-jsse-nio-443-exec-9] c.d.r.controller.login.LoginController   : update/passwordaaaaaa
+2020-06-08 17:28:41.251  INFO 9204 --- [https-jsse-nio-443-exec-9] c.d.r.controller.login.LoginController   : not null
+2020-06-08 17:28:41.251  INFO 9204 --- [https-jsse-nio-443-exec-9] c.d.r.services.impl.UserServiceImpl      : selectUserByUsername
+2020-06-08 17:28:41.264  INFO 9204 --- [https-jsse-nio-443-exec-9] c.d.r.controller.login.LoginController   : not null
+2020-06-08 17:28:41.264  INFO 9204 --- [https-jsse-nio-443-exec-9] c.d.r.controller.login.LoginController   : User{id=1, username='admin', password='cccccc'}
+2020-06-08 17:28:41.264  INFO 9204 --- [https-jsse-nio-443-exec-9] c.d.r.services.impl.UserServiceImpl      : updateUserPassword
+2020-06-08 17:28:41.412  INFO 9204 --- [https-jsse-nio-443-exec-9] c.d.r.controller.login.LoginController   : true
+2020-06-08 17:28:41.414  INFO 9204 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-08 17:28:49.231  INFO 9204 --- [https-jsse-nio-443-exec-8] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-08 17:28:49.231  INFO 9204 --- [https-jsse-nio-443-exec-8] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-08 17:28:49.232  INFO 9204 --- [https-jsse-nio-443-exec-8] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-08 17:28:49.232  INFO 9204 --- [https-jsse-nio-443-exec-8] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-08 17:28:49.232  INFO 9204 --- [https-jsse-nio-443-exec-8] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-08 17:28:49.234  INFO 9204 --- [https-jsse-nio-443-exec-8] c.d.r.controller.login.LoginController   : user/login:User{id=0, username='admin', password='ccccccc'}
+2020-06-08 17:28:49.234  INFO 9204 --- [https-jsse-nio-443-exec-8] c.d.r.services.impl.UserServiceImpl      : selectUserByUsername
+2020-06-08 17:28:49.238  INFO 9204 --- [https-jsse-nio-443-exec-8] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-08 17:28:55.916  INFO 9204 --- [https-jsse-nio-443-exec-5] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-08 17:28:55.917  INFO 9204 --- [https-jsse-nio-443-exec-5] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-08 17:28:55.917  INFO 9204 --- [https-jsse-nio-443-exec-5] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-08 17:28:55.917  INFO 9204 --- [https-jsse-nio-443-exec-5] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-08 17:28:55.918  INFO 9204 --- [https-jsse-nio-443-exec-5] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-08 17:28:55.919  INFO 9204 --- [https-jsse-nio-443-exec-5] c.d.r.controller.login.LoginController   : user/login:User{id=0, username='admin', password='cccccc'}
+2020-06-08 17:28:55.919  INFO 9204 --- [https-jsse-nio-443-exec-5] c.d.r.services.impl.UserServiceImpl      : selectUserByUsername
+2020-06-08 17:28:55.923  INFO 9204 --- [https-jsse-nio-443-exec-5] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-08 17:29:00.687  INFO 9204 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-08 17:29:00.688  INFO 9204 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-08 17:29:00.689  INFO 9204 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-08 17:29:00.690  INFO 9204 --- [https-jsse-nio-443-exec-10] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-08 17:29:00.690  INFO 9204 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-08 17:29:00.695  INFO 9204 --- [https-jsse-nio-443-exec-10] c.d.r.controller.login.LoginController   : user/login:User{id=0, username='admin', password='aaaaaa'}
+2020-06-08 17:29:00.696  INFO 9204 --- [https-jsse-nio-443-exec-10] c.d.r.services.impl.UserServiceImpl      : selectUserByUsername
+2020-06-08 17:29:00.701  INFO 9204 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-08 17:44:44.689  INFO 9204 --- [https-jsse-nio-443-exec-5] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-08 17:44:44.690  INFO 9204 --- [https-jsse-nio-443-exec-5] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-08 17:44:44.690  INFO 9204 --- [https-jsse-nio-443-exec-5] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-08 17:44:44.690  INFO 9204 --- [https-jsse-nio-443-exec-5] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-08 17:44:44.690  INFO 9204 --- [https-jsse-nio-443-exec-5] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-08 17:44:44.691  INFO 9204 --- [https-jsse-nio-443-exec-5] c.d.r.controller.login.LoginController   : user/login:User{id=0, username='admin', password='aaaaaa'}
+2020-06-08 17:44:44.692  INFO 9204 --- [https-jsse-nio-443-exec-5] c.d.r.services.impl.UserServiceImpl      : selectUserByUsername
+2020-06-08 17:44:44.698  INFO 9204 --- [https-jsse-nio-443-exec-5] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-09 10:23:32.470  INFO 9204 --- [Thread-185] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-06-09 10:23:32.475  INFO 9204 --- [Thread-185] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2020-06-09 10:23:32.644  INFO 9204 --- [Thread-185] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
