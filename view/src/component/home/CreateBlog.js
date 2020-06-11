@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import BlgDescription from "./blog/BlgDescription";
 import BlogSolve from "./blog/BlogSolve";
-import { Form, Input, Button, Checkbox } from 'antd';
-
+import { Form, Input, Button, Checkbox,Select,Space  } from 'antd';
+const { Option } = Select;
 class CreateBlog extends Component {
 
     constructor(props) {
@@ -18,6 +18,7 @@ class CreateBlog extends Component {
         window.onmousemove = e => this.onMouseMove(e);
         window.ontouchend = e => this.onMouseUp(e);
         window.ontouchmove = e => this.onTouchMove(e);
+        this.handleChange=this.handleChange.bind(this);
     }
 
     onMouseDown(e) {
@@ -70,6 +71,9 @@ class CreateBlog extends Component {
             cursorStyle:true
         });
     }
+    handleChange(value) {
+        console.log(value); // { key: "lucy", label: "Lucy (101)" }
+    }
 
 
     render() {
@@ -78,11 +82,11 @@ class CreateBlog extends Component {
         };
 
         const formItemLayout = {
-            labelCol: { span: 4 },
+            labelCol: { span: 0 },
             wrapperCol: { span: 8 },
         };
         const formTailLayout = {
-            labelCol: { span: 4 },
+            labelCol: { span: 0 },
             wrapperCol: { span: 8, offset: 4 },
         };
 
@@ -118,23 +122,86 @@ class CreateBlog extends Component {
                                 <Form  name="dynamic_rule">
                                     <Form.Item
                                         {...formItemLayout}
-                                        name="username"
-                                        label="问题项"
+                                        name="blog"
+                                        label="记录名称"
                                         rules={[
                                             {
                                                 required: true,
-                                                message: '请输入你的问题名称',
+                                                message: '请输入你的记录名称',
                                             },
                                         ]}
                                     >
-                                        <Input placeholder="请输入你的问题名称" />
+                                        <Input placeholder="请输入你的记录名称" />
                                     </Form.Item>
 
-                                    <BlgDescription></BlgDescription>
-                                    <BlogSolve></BlogSolve>
-                                    <Form.Item {...formTailLayout}>
+                                    <Form.Item
+                                        labelCol={{ span: 2}}
+                                        wrapperCol={{ span: 8}}
+                                        name="username"
+                                        label="协 助 人"
+                                        rules={[
+                                            {
+                                                message: '请输入协助人员',
+                                            },
+                                        ]}
+                                    >
+                                        <Input placeholder="请输入协助人员" />
+                                    </Form.Item>
+                                    <Form.Item
+                                        labelCol={{ span: 2}}
+                                        wrapperCol={{ span: 20}}
+                                        name="blgdescription"
+                                        label="记录描述"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: '请输入记录描述',
+                                            },
+                                        ]}
+                                    >
+                                        <BlgDescription></BlgDescription>
+                                    </Form.Item>
+                                    <Form.Item
+                                        labelCol={{ span: 2}}
+                                        wrapperCol={{ span: 20}}
+                                        name="blgdesolve"
+                                        label="记录过程"
+                                        rules={[
+                                            {
+                                                message: '请输入记录过程',
+                                            },
+                                        ]}
+                                    >
+                                        <BlogSolve></BlogSolve>
+                                    </Form.Item>
+                                    <Form.Item
+                                        labelCol={{ span: 2}}
+                                        wrapperCol={{ span: 20}}
+                                        name="blogstate"
+                                        label="记录状态"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: '请选择记录状态',
+                                            },
+                                        ]}
+                                    >
+                                        <Select
+                                            labelInValue
+                                            defaultValue={{ key: '记录中' }}
+                                            style={{ width: 120 }}
+                                            onChange={this.handleChange}
+                                        >
+                                            <Option value="ok">记录中</Option>
+                                            <Option value="fail">记录完成</Option>
+                                            <Option value="ing">记录暂缓</Option>
+                                        </Select>
+                                    </Form.Item>
+
+                                    <Form.Item
+                                        wrapperCol={{offset: 10}}>
                                         <Button type="primary" onClick={onCheck}>
-                                            Check
+                                            提交记录
                                         </Button>
                                     </Form.Item>
                                 </Form>

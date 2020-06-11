@@ -248,7 +248,7 @@ class MenuAndTree extends Component {
                             className="pb-5"
                             style={{cursor:cursorStyle.cursor, width: '100%', height: 20, backgroundColor: 'white' }}
                         >
-                            BLOG
+                            记录项
                             <button onClick={this.onHandleClick} type="button" className="close" aria-label="关闭">
                                 <span aria-hidden="true">&times;</span>
                             </button>
