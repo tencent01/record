@@ -21,9 +21,13 @@ class Home extends Component {
             showLogin:false,
             showCreateAccount:false,
             showUpdatePassword:false,
+            showRecordMenu:true,
+            showCreateRecord:true,
         }
         this.showLogin=this.showLogin.bind(this);
         this.showUpdatePassword=this.showUpdatePassword.bind(this);
+        this.onShowMenuAndTree=this.onShowMenuAndTree.bind(this);
+        this.onShowCreateRecord=this.onShowCreateRecord.bind(this);
     }
 
     onClick(e){
@@ -46,20 +50,34 @@ class Home extends Component {
         })
     }
 
+    onShowMenuAndTree(showMenuAndTreeValue){
+        this.setState({
+            showRecordMenu:showMenuAndTreeValue,
+        })
+    }
+
+    onShowCreateRecord(showCreateRecordValue){
+        this.setState({
+            showCreateRecord:showCreateRecordValue,
+        })
+    }
 
 
     render() {
         let loginView=this.state.showLogin?<Login showUpdatePassword={this.showUpdatePassword} showLogin={this.showLogin}  className="btn btn-primary float-right mr-5 mt-3"></Login>:"";
         let updatePassword=this.state.showUpdatePassword?<UpdatePassword showUpdatePassword={this.showUpdatePassword}></UpdatePassword>:"";
+        let menuAndTree=this.state.showRecordMenu?<MenuAndTree onShowMenuAndTree={this.onShowMenuAndTree}></MenuAndTree>:"";
+        let createBlog=this.state.showCreateRecord?<CreateBlog onShowCreateRecord={this.onShowCreateRecord}></CreateBlog>:"";
         return (
             <div>
                 <Button type="primary" shape="circle" size="large"  onClick={e => this.onClick(e)}  className="btn btn-primary float-right mr-5 mt-3" >
                     登录
                 </Button>
-                <MenuAndTree></MenuAndTree>
-                <CreateBlog></CreateBlog>
+                {menuAndTree}
+                {createBlog}
                 {loginView}
                 {updatePassword}
+                {/*<CkEditorDome></CkEditorDome>*/}
                 {/*<MenuTree></MenuTree>*/}
             </div>
         );

@@ -22736,3 +22736,6 @@ Error starting ApplicationContext. To display the conditions report re-run your 
 2020-06-11 18:46:34.586  INFO 8772 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
 2020-06-11 18:46:34.587  INFO 8772 --- [https-jsse-nio-443-exec-9] c.d.r.c.operation.FileController         : fileall
 2020-06-11 18:46:34.591  INFO 8772 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-11 18:47:31.199  INFO 8772 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-06-11 18:47:31.219  INFO 8772 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-2} closing ...
+2020-06-11 18:47:31.257  INFO 8772 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-2} closed

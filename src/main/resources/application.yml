@@ -8,3 +8,7 @@ server:
 spring:
   profiles:
     active: datasource
+share:
+  path:
+file-service:
+  profile: d:/profile

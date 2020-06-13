@@ -1,4 +1,4 @@
-import {httpGet,paramGet, httpPost,httpTokenPost} from "./http";
+import {httpGet,paramGet, httpPost,httpFormPost,httpTokenPost} from "./http";
 import url from "./url";
 
 const request={
@@ -35,6 +35,17 @@ const request={
         let requestUrl=url.home+url.file+url.read;
         console.log(requestUrl)
         return paramGet(requestUrl,path);
+    },
+    uploadImg(data){
+        let requestUrl=url.home+url.blog+url.upload+url.img;
+        console.log(requestUrl)
+        return httpFormPost(requestUrl,data);
+    },
+
+    newBlog(blog){
+        let requestUrl=url.home+url.blog+url.new;
+        console.log(requestUrl)
+        return httpPost(requestUrl,blog);
     },
 }
 

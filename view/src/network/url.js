@@ -8,6 +8,10 @@ const url={
     get:"/get",
     all:"/all",
     read:"/read",
+    blog:"/blog",
+    img:"/img",
+    upload:"/upload",
+    new:"/new",
 
 }
 

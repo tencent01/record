@@ -2,7 +2,12 @@ import React, {Component} from 'react';
 import BlgDescription from "./blog/BlgDescription";
 import BlogSolve from "./blog/BlogSolve";
 import { Form, Input, Button, Checkbox,Select,Space  } from 'antd';
+import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import request from "../../network/request";
+import BlgDescriptionCk from "./blog/BlgDescriptionCK";
+import BlogSolveCk from "./blog/BlogSolveCK";
 const { Option } = Select;
+
 class CreateBlog extends Component {
 
     constructor(props) {
@@ -10,6 +15,8 @@ class CreateBlog extends Component {
         this.state={
             translateX: 0,
             translateY: 0,
+            blgdescription:null,
+            blogsolves: new Map(),
         };
         this.moving = false;
         this.lastX = null;
@@ -19,6 +26,9 @@ class CreateBlog extends Component {
         window.ontouchend = e => this.onMouseUp(e);
         window.ontouchmove = e => this.onTouchMove(e);
         this.handleChange=this.handleChange.bind(this);
+        this.onBlogDescription=this.onBlogDescription.bind(this);
+        this.onBlogSolve=this.onBlogSolve.bind(this);
+        this.onHandleClick=this.onHandleClick.bind(this);
     }
 
     onMouseDown(e) {
@@ -72,9 +82,25 @@ class CreateBlog extends Component {
         });
     }
     handleChange(value) {
-        console.log(value); // { key: "lucy", label: "Lucy (101)" }
+
+        // console.log(value); // { key: "lucy", label: "Lucy (101)" }
     }
 
+    onBlogDescription(content){
+        // console.log(content)
+        this.setState({
+            blgdescription:content,
+        })
+    }
+    onBlogSolve(content,fieldName){
+        this.state.blogsolves.delete(fieldName);
+        this.state.blogsolves.set(fieldName,content);
+        // console.log(this.state.blogsolves)
+    }
+
+    onHandleClick(){
+        this.props.onShowCreateRecord(false);
+    }
 
     render() {
         const cursorStyle = {
@@ -97,6 +123,25 @@ class CreateBlog extends Component {
                 console.log('Failed:', errorInfo);
             }
         };
+
+        const onFinish = values => {
+            values.blgdescription=this.state.blgdescription;
+            this.state.blogsolves.forEach((value,key,map)=>{
+                console.log("value",value);
+                console.log("key",key);
+                console.log("map",map);
+                values.blogsolves[key]=value;
+            })
+            request.newBlog(values).then(res=>{
+                return res.json();
+            }).then(data=>{
+                if(!data){
+                    this.props.onShowCreateRecord(false);
+                }
+                return data;
+            })
+            console.log('Received values of form: ', values);
+        };
         return (
             <div style={{width:'1px',height:'0px'}} className="float-left">
                 <div className="float-left"
@@ -117,12 +162,14 @@ class CreateBlog extends Component {
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div style={{width:"100%",height:window.innerHeight-100,overflow:'auto'}} >
+                        <div style={{width:"100%",height:window.innerHeight-100,overflow:'auto'}} className="pl-5" >
                             <div style={{height: 10,}} >
-                                <Form  name="dynamic_rule">
+                                <Form  name="dynamic_rule"
+                                       onFinish={onFinish}
+                                >
                                     <Form.Item
                                         {...formItemLayout}
-                                        name="blog"
+                                        name="blogname"
                                         label="记录名称"
                                         rules={[
                                             {
@@ -137,7 +184,7 @@ class CreateBlog extends Component {
                                     <Form.Item
                                         labelCol={{ span: 2}}
                                         wrapperCol={{ span: 8}}
-                                        name="username"
+                                        name="helpusername"
                                         label="协 助 人"
                                         rules={[
                                             {
@@ -149,19 +196,39 @@ class CreateBlog extends Component {
                                     </Form.Item>
                                     <Form.Item
                                         labelCol={{ span: 2}}
+                                        wrapperCol={{ span: 8}}
+                                        name="blogstate"
+                                        label="记录状态"
+                                        rules={[
+                                        {
+                                            required:true,
+                                            message: '请选择状态',
+                                        },
+                                    ]}
+                                    >
+                                        <Select
+                                            labelInValue
+                                            onChange={this.handleChange}
+                                            placeholder="请选择状态"
+                                        >
+                                            <Option value="ing">记录中</Option>
+                                            <Option value="ok">记录完成</Option>
+                                            <Option value="wait">记录暂缓</Option>
+                                        </Select>
+                                    </Form.Item>
+                                    <Form.Item
+                                        labelCol={{ span: 2}}
                                         wrapperCol={{ span: 20}}
                                         name="blgdescription"
                                         label="记录描述"
-                                        rules={[
-                                            {
-                                                required: true,
-                                                message: '请输入记录描述',
-                                            },
-                                        ]}
                                     >
-                                        <BlgDescription></BlgDescription>
+
+                                        <div style={{width:"95%"}}>
+                                            <BlgDescription onBlogDescription={this.onBlogDescription}></BlgDescription>
+                                            {/*<BlgDescription onBlogDescription={this.onBlogDescription}></BlgDescription>*/}
+                                        </div>
                                     </Form.Item>
-                                    <Form.Item
+                                    {/*<Form.Item
                                         labelCol={{ span: 2}}
                                         wrapperCol={{ span: 20}}
                                         name="blgdesolve"
@@ -173,34 +240,67 @@ class CreateBlog extends Component {
                                         ]}
                                     >
                                         <BlogSolve></BlogSolve>
-                                    </Form.Item>
-                                    <Form.Item
-                                        labelCol={{ span: 2}}
-                                        wrapperCol={{ span: 20}}
-                                        name="blogstate"
-                                        label="记录状态"
-                                        rules={[
-                                            {
-                                                required: true,
-                                                message: '请选择记录状态',
-                                            },
-                                        ]}
-                                    >
-                                        <Select
-                                            labelInValue
-                                            defaultValue={{ key: '记录中' }}
-                                            style={{ width: 120 }}
-                                            onChange={this.handleChange}
-                                        >
-                                            <Option value="ok">记录中</Option>
-                                            <Option value="fail">记录完成</Option>
-                                            <Option value="ing">记录暂缓</Option>
-                                        </Select>
-                                    </Form.Item>
+                                    </Form.Item>*/}
 
+                                    <Form.List name="blogsolves">
+                                        {(fields, { add, remove }) => {
+                                            return (
+                                                <div>
+                                                    {fields.map(field => (
+                                                        <div key={field.key}  align="start">
+
+                                                            <Form.Item
+                                                                {...field}
+                                                                name={[field.name, 'first']}
+                                                                label="记录过程"
+                                                                labelCol={{ span: 2}}
+                                                                wrapperCol={{ span: 20}}
+                                                                fieldKey={[field.fieldKey, '    first']}
+                                                                rules={[{message: 'Missing first name' }]}
+                                                            >
+
+                                                                <div style={{float:"left",width:"95%"}}>
+                                                                    <BlogSolve onBlogSolve={this.onBlogSolve} fieldName={field.name}></BlogSolve>
+                                                                </div>
+                                                                <MinusCircleOutlined
+                                                                    style={{float:"left"}}
+                                                                    onClick={() => {
+                                                                        console.log("field",field);
+                                                                        console.log("field",fields);
+                                                                        this.state.blogsolves.delete(field.name);
+                                                                        console.log(this.state.blogsolves)
+                                                                        remove(field.name);
+                                                                    }}
+                                                                />
+                                                            </Form.Item>
+                                                        </div>
+                                                    ))}
+
+                                                    <Form.Item
+                                                        labelCol={{ span: 2}}
+                                                        wrapperCol={{ span: 22}}
+
+                                                        style={{ width: '96%' }}
+                                                    >
+                                                        <Button
+                                                            type="dashed"
+                                                            onClick={() => {
+                                                                // console.log("fields",fields)
+                                                                // console.log(this.state.blogsolves)
+                                                                add();
+                                                            }}
+                                                            block
+                                                        >
+                                                            <PlusOutlined /> 添加记录过程
+                                                        </Button>
+                                                    </Form.Item>
+                                                </div>
+                                            );
+                                        }}
+                                    </Form.List>
                                     <Form.Item
                                         wrapperCol={{offset: 10}}>
-                                        <Button type="primary" onClick={onCheck}>
+                                        <Button type="primary" htmlType="submit"  onClick={onCheck}>
                                             提交记录
                                         </Button>
                                     </Form.Item>

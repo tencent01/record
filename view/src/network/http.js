@@ -23,7 +23,14 @@ export function httpPost(url,param) {
         // redirect: 'follow', // manual, *follow, error
         // referrer: 'no-referrer', // *client, no-referrer
     })
+}
 
+export function httpFormPost(url,param) {
+    return fetch(url,{
+        method: 'post',
+        body:param,
+        contextType:false,
+    })
 }
 
 export function httpTokenPost(url,param,token) {
