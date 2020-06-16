@@ -130,7 +130,10 @@ class CreateBlog extends Component {
                 console.log("value",value);
                 console.log("key",key);
                 console.log("map",map);
-                values.blogsolves[key]=value;
+                let blogsolve=new Object();
+                blogsolve["blogsolve"]=value;
+                console.log(blogsolve);
+                values.blogsolves[key]=blogsolve;
             })
             request.newBlog(values).then(res=>{
                 return res.json();

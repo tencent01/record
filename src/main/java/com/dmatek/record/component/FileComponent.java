@@ -29,7 +29,14 @@ public class FileComponent {
 
     private BlogNode fileToBlogNode(File file){
         BlogNode blogNode=new BlogNode();
-        blogNode.setName(file.getName());
+        String fileName=file.getName();
+        String[] fileNames=fileName.split("_");
+        if(fileNames.length==2){
+            blogNode.setName(fileNames[0]);
+            blogNode.setId(fileNames[1]);
+        }else{
+            blogNode.setName(fileName);
+        }
         String path=file.getPath();
         String rootPath=getClass().getClassLoader().getResource("static/blog").getFile().replace("/","\\");
         blogNode.setKey(("\\"+path).replace(rootPath+"\\",""));

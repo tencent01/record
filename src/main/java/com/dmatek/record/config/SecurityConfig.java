@@ -66,7 +66,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 //        http.cors();
         http.authorizeRequests()
-                .antMatchers("/user/login","/file/get","/blog/new","/blog/upload/img","/file/all","/file/read","/user/update/password","/user/login/test","/user/login/page","/user/login/error","/error/401","/static/**").permitAll()
+                .antMatchers("/user/login",
+                        "/file/get","/blog/new","/file/all","/file/read",
+                        "/blog/upload/img","/blog/get",
+                        "/user/update/password",
+                        "/home/index","/index.html",
+                        "/user/login/test","/user/login/page","/user/login/error","/error/401",
+                        "/static/**")
+                .permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/user/login/page").failureUrl("/user/login/error")

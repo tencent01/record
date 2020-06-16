@@ -6,6 +6,13 @@ server:
     key-store-type: PKCS12
     key-alias: tomcat
 spring:
+#  thymeleaf:
+#    mode: HTML5
+#    encoding: UTF-8
+#    servlet:
+#      content-type: text/html
+#    cache: false
+#    prefix: classpath:/templates
   profiles:
     active: datasource
 share:

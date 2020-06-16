@@ -10,6 +10,7 @@ import java.util.List;
  */
 public class BlogNode {
 
+    private String id;
     private String key;
     private String name;
     private List<BlogNode> blogNodes;
@@ -61,5 +62,13 @@ public class BlogNode {
 
     public void setKey(String key) {
         this.key = key;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

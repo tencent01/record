@@ -22,6 +22,6 @@ public class HomeController {
     @RequestMapping("index")
     public String home(){
         logger.info(TAG+"/index");
-        return "/static/index.html";
+        return "../static/index.html";
     }
 }
