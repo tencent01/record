@@ -12,6 +12,7 @@ const url={
     img:"/img",
     upload:"/upload",
     new:"/new",
+    delete:"/delete",
 
 }
 

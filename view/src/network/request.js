@@ -32,7 +32,7 @@ const request={
         return httpGet(requestUrl);
     },
     readFile(path){
-        let requestUrl=url.home+url.file+url.read;
+        let requestUrl=url.home+url.blog+url.get;
         console.log(requestUrl)
         return paramGet(requestUrl,path);
     },
@@ -47,6 +47,12 @@ const request={
         console.log(requestUrl)
         return httpPost(requestUrl,blog);
     },
+
+    deleteBlog(blog){
+        let requestUrl=url.home+url.blog+url.delete;
+        console.log(requestUrl)
+        return paramGet(requestUrl,blog);
+    }
 }
 
 export default request;

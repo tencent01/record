@@ -127,20 +127,35 @@ class CreateBlog extends Component {
         const onFinish = values => {
             values.blgdescription=this.state.blgdescription;
             this.state.blogsolves.forEach((value,key,map)=>{
-                console.log("value",value);
-                console.log("key",key);
-                console.log("map",map);
+                // console.log("value",value);
+                // console.log("key",key);
+                // console.log("map",map);
                 let blogsolve=new Object();
                 blogsolve["blogsolve"]=value;
-                console.log(blogsolve);
+                // console.log(blogsolve);
                 values.blogsolves[key]=blogsolve;
             })
+            let node=this.props.onNodeData;
+            console.log(node)
+            if(node!=null){
+                if(node.isLeaf){
+                    let keyturl = node.key.substr(0,node.key.lastIndexOf('\\'));
+                    values.path=keyturl;
+                    // console.log(keyturl)
+                }else{
+                    // console.log(node.key)
+                    values.path=node.key;
+                }
+            }else{
+                values.path=null;
+            }
+
+            console.log(values)
             request.newBlog(values).then(res=>{
                 return res.json();
             }).then(data=>{
-                if(!data){
-                    this.props.onShowCreateRecord(false);
-                }
+                // console.log(data)
+                this.props.onGetAllFileData(data);
                 return data;
             })
             console.log('Received values of form: ', values);

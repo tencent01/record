@@ -15,3 +15,9 @@
 
     user-select:none;
 }
+
+.menu_click_item:hover{
+    background-color: #cccccc;
+}
+
+

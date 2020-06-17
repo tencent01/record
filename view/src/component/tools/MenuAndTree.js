@@ -12,92 +12,9 @@ class MenuAndTree extends Component {
     constructor(props) {
         super(props);
         this.state={
-            treeData:[
-                {
-                    title: 'parent 0',
-                    key: '0-0',
-                    children: [
-                        {
-                            title: 'leaf 0-0',
-                            key: '0-0-0',
-                            isLeaf: true,
-                        },
-                        {
-                            title: 'leaf 0-1',
-                            key: '0-0-1',
-                            isLeaf: true,
-                        },
-                        {
-                            title: 'parent 2',
-                            key: '0-0-2',
-                            children: [
-                                {
-                                    title: 'leaf 0-0',
-                                    key: '0-0-2-0',
-                                    isLeaf: true,
-                                },
-                                {
-                                    title: 'leaf 0-1',
-                                    key: '0-0-2-1',
-                                    isLeaf: true,
-                                },
-                                {
-                                    title: 'parent 2',
-                                    key: '0-0-2-3',
-                                    children: [
-                                        {
-                                            title: 'leaf 0-0',
-                                            key: '0-0-2-3-0',
-                                            isLeaf: true,
-                                        },
-                                        {
-                                            title: 'leaf 0-1',
-                                            key: '0-0-2-3-1',
-                                            isLeaf: true,
-                                        },
-                                        {
-                                            title: 'parent 2',
-                                            key: '0-0-2-3-2',
-                                            children: [
-                                                {
-                                                    title: 'leaf 0-0',
-                                                    key: '0-0-2-3-2-0',
-                                                    isLeaf: true,
-                                                },
-                                                {
-                                                    title: 'leaf 0-1',
-                                                    key: '0-0-2-3-2-1',
-                                                    isLeaf: true,
-                                                },
-                                            ],
-                                        }
-                                    ],
-                                }
-
-                            ],
-                        }
-
-                    ],
-                },
-                {
-                    title: 'parent 1',
-                    key: '0-1',
-                    children: [
-                        {
-                            title: 'leaf 1-0',
-                            key: '0-1-0',
-                            isLeaf: true,
-                        },
-                        {
-                            title: 'leaf 1-1',
-                            key: '0-1-1',
-                            isLeaf: true,
-                        },
-                    ],
-                },
-            ],
             translateX: 0,
             translateY: 0,
+            node:null,
         };
         this.moving = false;
         this.lastX = null;
@@ -106,65 +23,41 @@ class MenuAndTree extends Component {
         window.onmousemove = e => this.onMouseMove(e);
         window.ontouchend = e => this.onMouseUp(e);
         window.ontouchmove = e => this.onTouchMove(e);
-        this.dataToTree=this.dataToTree.bind(this);
+        window.oncontextmenu=e=>this.onWinClick(e);
+        this.onHandleClickDir=this.onHandleClickDir.bind(this);
     }
 
 
 
     componentDidMount() {
-        request.getAllBlog().then(response=>{
-            return response.json();
-        }).then(data=>{
-            console.log(data);
-            console.log(this.dataToTree(data));
-            this.setState({
-                treeData:this.dataToTree(data),
-            })
-        });
     }
 
-    dataToTree(data){
-        let newTreeData=[];
-        if(data!=null){
-            for (let i = 0; i <data.length ; i++) {
-                let dataItem=data[i];
-                let dataJson=new Object();
-                dataJson.title=dataItem.name;
-                dataJson.key=dataItem.key;
-                dataJson.state=dataItem.state;
-                if(dataItem.blogNodes==null){
-                    dataJson.isLeaf=true;
-                }else{
-                    dataJson.children=this.dataToTree(dataItem.blogNodes);
-                }
-                newTreeData.push(dataJson)
-            }
-        }
-        return newTreeData;
-
+    onWinClick(e){
+        // console.log("AAAAAAAAAAAAAAAAA")
+        // e.preventDefault();
     }
 
 
     onMouseDown(e) {
-        console.log("and onMouseDown")
+        // console.log("and onMouseDown")
         e.stopPropagation();
         this.moving = true;
     }
 
     onMouseUp() {
-        console.log("and onMouseUp")
+        // console.log("and onMouseUp")
         this.moving = false;
         this.lastX = null;
         this.lastY = null;
     }
 
     onMouseMove(e) {
-        console.log("and onMouseMove")
+        // console.log("and onMouseMove")
         this.moving && this.onMove(e);
     }
 
     onTouchMove(e) {
-        console.log("and onTouchMove")
+        // console.log("and onTouchMove")
         this.moving && this.onTouchesMove(e);
     }
 
@@ -180,7 +73,7 @@ class MenuAndTree extends Component {
     }
 
     onMove(e) {
-        console.log("and onMove")
+        // console.log("and onMove")
         if(this.lastX && this.lastY) {
             let dx = e.clientX - this.lastX;
             let dy = e.clientY - this.lastY;
@@ -190,28 +83,41 @@ class MenuAndTree extends Component {
         this.lastY = e.clientY;
     }
     onMouseOut(e){
-        console.log("and onMouseOut")
+        // console.log("and onMouseOut")
         this.setState({
             cursorStyle:false
         });
     }
 
     onMouseOver(e){
-        console.log("and onMouseOver")
+        // console.log("and onMouseOver")
         this.setState({
             cursorStyle:true
         });
     }
 
+    onHandleClickDir(e){
+        console.log("AAAAAAAAAAAAAAAA")
+        e.preventDefault();
+        this.props.onShowMeneClick(this.state.node,true,e.clientX,e.clientY);
+
+    }
+
     render() {
         const onSelect = (keys, event) => {
-            console.log('Trigger Select', keys, event);
-            request.readFile({keys:keys}).then(response=>{
-                return response.json();
-            }).then(data=>{
-                console.log(data);
-                return data;
-            })
+            // console.log('Trigger Select', keys, event);
+            // console.log(event.node.isLeaf)
+            if(event.node.isLeaf){
+                request.readFile({keys:keys}).then(response=>{
+                    return response.text();
+                }).then(data=>{
+                    this.props.onRecordViewData(true,data)
+                    return data;
+                })
+            }else{
+                console.log("dir")
+            }
+
         };
 
         const onExpand = () => {
@@ -219,8 +125,11 @@ class MenuAndTree extends Component {
         };
         const onRightClick = (o) => {
             let node=o.node;
-
-            console.log(node);
+            console.log(node)
+            this.setState({
+                node:node,
+            })
+            // this.props.onShowMeneClick(node,true,o.event.clientX,o.event.clientY);
 
         };
 
@@ -253,7 +162,7 @@ class MenuAndTree extends Component {
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div style={{width:"100%",height:window.innerHeight-135,overflow:'auto'}} className="float-left">
+                        <div style={{width:"100%",height:window.innerHeight-135,overflow:'auto'}} onContextMenu={this.onHandleClickDir} className="float-left">
                             <div style={{width:"auto", display:"inline-block"}}>
                                 <DirectoryTree
                                     multiple
@@ -261,7 +170,7 @@ class MenuAndTree extends Component {
                                     onSelect={onSelect}
                                     onExpand={onExpand}
                                     onRightClick={onRightClick}
-                                    treeData={this.state.treeData}
+                                    treeData={this.props.treeData}
                                 />
                             </div>
 

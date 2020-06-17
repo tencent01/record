@@ -6614,3 +6614,215 @@ Error starting ApplicationContext. To display the conditions report re-run your 
 2020-06-16 18:10:46.282  INFO 16540 --- [https-jsse-nio-443-exec-1] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
 2020-06-16 18:10:46.282  INFO 16540 --- [https-jsse-nio-443-exec-1] c.d.r.c.operation.FileController         : fileall
 2020-06-16 18:10:46.284  INFO 16540 --- [https-jsse-nio-443-exec-1] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:18:24.452  INFO 16540 --- [https-jsse-nio-443-exec-7] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:18:24.452  INFO 16540 --- [https-jsse-nio-443-exec-7] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:18:24.452  INFO 16540 --- [https-jsse-nio-443-exec-7] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:18:24.452  INFO 16540 --- [https-jsse-nio-443-exec-7] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:18:24.452  INFO 16540 --- [https-jsse-nio-443-exec-7] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:18:24.453  INFO 16540 --- [https-jsse-nio-443-exec-7] c.d.r.c.operation.FileController         : fileall
+2020-06-16 18:18:24.454  INFO 16540 --- [https-jsse-nio-443-exec-7] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:19:04.061  INFO 16540 --- [https-jsse-nio-443-exec-8] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:19:04.062  INFO 16540 --- [https-jsse-nio-443-exec-8] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:19:04.062  INFO 16540 --- [https-jsse-nio-443-exec-8] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:19:04.062  INFO 16540 --- [https-jsse-nio-443-exec-8] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:19:04.062  INFO 16540 --- [https-jsse-nio-443-exec-8] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:19:04.063  INFO 16540 --- [https-jsse-nio-443-exec-8] c.d.r.c.operation.FileController         : fileall
+2020-06-16 18:19:04.088  INFO 16540 --- [https-jsse-nio-443-exec-8] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:19:14.193  INFO 16540 --- [https-jsse-nio-443-exec-1] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:19:14.193  INFO 16540 --- [https-jsse-nio-443-exec-1] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:19:14.196  INFO 16540 --- [https-jsse-nio-443-exec-1] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:19:14.197  INFO 16540 --- [https-jsse-nio-443-exec-1] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:19:14.198  INFO 16540 --- [https-jsse-nio-443-exec-1] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:19:14.198  INFO 16540 --- [https-jsse-nio-443-exec-1] c.d.r.c.operation.FileController         : file_read: com\dmatek
+2020-06-16 18:19:14.199  INFO 16540 --- [https-jsse-nio-443-exec-1] c.d.r.services.impl.FileServiceImpl      : /G:/Users/git/IdeaProjects/record/target/classes/static/blog/com\dmatek
+2020-06-16 18:19:14.203  INFO 16540 --- [https-jsse-nio-443-exec-1] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:19:15.433  INFO 16540 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:19:15.434  INFO 16540 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:19:15.434  INFO 16540 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:19:15.434  INFO 16540 --- [https-jsse-nio-443-exec-6] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:19:15.434  INFO 16540 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:19:15.434  INFO 16540 --- [https-jsse-nio-443-exec-6] c.d.r.c.operation.FileController         : file_read: com\dmatek\record
+2020-06-16 18:19:15.435  INFO 16540 --- [https-jsse-nio-443-exec-6] c.d.r.services.impl.FileServiceImpl      : /G:/Users/git/IdeaProjects/record/target/classes/static/blog/com\dmatek\record
+2020-06-16 18:19:15.436  INFO 16540 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:19:18.360  INFO 16540 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:19:18.361  INFO 16540 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:19:18.362  INFO 16540 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:19:18.362  INFO 16540 --- [https-jsse-nio-443-exec-2] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:19:18.362  INFO 16540 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:19:18.364  INFO 16540 --- [https-jsse-nio-443-exec-2] c.d.r.c.operation.FileController         : file_read: com\dmatek\record\bean
+2020-06-16 18:19:18.365  INFO 16540 --- [https-jsse-nio-443-exec-2] c.d.r.services.impl.FileServiceImpl      : /G:/Users/git/IdeaProjects/record/target/classes/static/blog/com\dmatek\record\bean
+2020-06-16 18:19:18.377  INFO 16540 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:19:19.073  INFO 16540 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:19:19.074  INFO 16540 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:19:19.074  INFO 16540 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:19:19.074  INFO 16540 --- [https-jsse-nio-443-exec-9] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:19:19.074  INFO 16540 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:19:19.097  INFO 16540 --- [https-jsse-nio-443-exec-9] c.d.r.c.operation.FileController         : file_read: com\dmatek\record\bean\BlogNode.class
+2020-06-16 18:19:19.097  INFO 16540 --- [https-jsse-nio-443-exec-9] c.d.r.services.impl.FileServiceImpl      : /G:/Users/git/IdeaProjects/record/target/classes/static/blog/com\dmatek\record\bean\BlogNode.class
+2020-06-16 18:19:19.099  INFO 16540 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:20:00.573  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:20:00.573  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:20:00.573  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:20:00.573  INFO 16540 --- [https-jsse-nio-443-exec-10] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:20:00.573  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:20:00.574  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.c.operation.FileController         : fileall
+2020-06-16 18:20:00.584  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:21:45.967  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:21:45.967  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:21:45.967  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:21:45.967  INFO 16540 --- [https-jsse-nio-443-exec-3] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:21:45.968  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:21:45.974  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:21:46.004  INFO 16540 --- [https-jsse-nio-443-exec-8] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:21:46.004  INFO 16540 --- [https-jsse-nio-443-exec-8] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:21:46.004  INFO 16540 --- [https-jsse-nio-443-exec-8] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:21:46.004  INFO 16540 --- [https-jsse-nio-443-exec-8] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:21:46.004  INFO 16540 --- [https-jsse-nio-443-exec-8] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:21:46.005  INFO 16540 --- [https-jsse-nio-443-exec-8] c.d.r.controller.login.LoginController   : user/login/page:
+2020-06-16 18:21:46.006  INFO 16540 --- [https-jsse-nio-443-exec-8] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:21:49.539  INFO 16540 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:21:49.539  INFO 16540 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:21:49.539  INFO 16540 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:21:49.539  INFO 16540 --- [https-jsse-nio-443-exec-6] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:21:49.540  INFO 16540 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:21:49.551  INFO 16540 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:21:49.577  INFO 16540 --- [https-jsse-nio-443-exec-5] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:21:49.578  INFO 16540 --- [https-jsse-nio-443-exec-5] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:21:49.578  INFO 16540 --- [https-jsse-nio-443-exec-5] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:21:49.578  INFO 16540 --- [https-jsse-nio-443-exec-5] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:21:49.578  INFO 16540 --- [https-jsse-nio-443-exec-5] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:21:49.578  INFO 16540 --- [https-jsse-nio-443-exec-5] c.d.r.controller.login.LoginController   : user/login/page:
+2020-06-16 18:21:49.581  INFO 16540 --- [https-jsse-nio-443-exec-5] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:21:49.717  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:21:49.721  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:21:49.721  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:21:49.721  INFO 16540 --- [https-jsse-nio-443-exec-3] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:21:49.722  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:21:49.732  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:21:49.794  INFO 16540 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:21:49.794  INFO 16540 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:21:49.795  INFO 16540 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:21:49.795  INFO 16540 --- [https-jsse-nio-443-exec-9] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:21:49.795  INFO 16540 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:21:49.795  INFO 16540 --- [https-jsse-nio-443-exec-9] c.d.r.controller.login.LoginController   : user/login/page:
+2020-06-16 18:21:49.797  INFO 16540 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:21:49.931  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:21:49.931  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:21:49.931  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:21:49.931  INFO 16540 --- [https-jsse-nio-443-exec-10] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:21:49.931  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:21:49.943  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:21:49.979  INFO 16540 --- [https-jsse-nio-443-exec-8] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:21:49.979  INFO 16540 --- [https-jsse-nio-443-exec-8] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:21:49.979  INFO 16540 --- [https-jsse-nio-443-exec-8] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:21:49.979  INFO 16540 --- [https-jsse-nio-443-exec-8] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:21:49.979  INFO 16540 --- [https-jsse-nio-443-exec-8] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:21:49.979  INFO 16540 --- [https-jsse-nio-443-exec-8] c.d.r.controller.login.LoginController   : user/login/page:
+2020-06-16 18:21:49.981  INFO 16540 --- [https-jsse-nio-443-exec-8] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:21:51.034  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:21:51.035  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:21:51.036  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:21:51.036  INFO 16540 --- [https-jsse-nio-443-exec-3] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:21:51.036  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:21:51.049  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:21:51.118  INFO 16540 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:21:51.118  INFO 16540 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:21:51.118  INFO 16540 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:21:51.118  INFO 16540 --- [https-jsse-nio-443-exec-2] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:21:51.119  INFO 16540 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:21:51.119  INFO 16540 --- [https-jsse-nio-443-exec-2] c.d.r.controller.login.LoginController   : user/login/page:
+2020-06-16 18:21:51.120  INFO 16540 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:21:51.227  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:21:51.227  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:21:51.227  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:21:51.227  INFO 16540 --- [https-jsse-nio-443-exec-3] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:21:51.227  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:21:51.232  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:21:51.328  INFO 16540 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:21:51.328  INFO 16540 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:21:51.328  INFO 16540 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:21:51.328  INFO 16540 --- [https-jsse-nio-443-exec-9] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:21:51.328  INFO 16540 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:21:51.328  INFO 16540 --- [https-jsse-nio-443-exec-9] c.d.r.controller.login.LoginController   : user/login/page:
+2020-06-16 18:21:51.329  INFO 16540 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:21:51.419  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:21:51.419  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:21:51.419  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:21:51.419  INFO 16540 --- [https-jsse-nio-443-exec-10] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:21:51.419  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:21:51.421  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:21:51.459  INFO 16540 --- [https-jsse-nio-443-exec-4] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:21:51.459  INFO 16540 --- [https-jsse-nio-443-exec-4] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:21:51.459  INFO 16540 --- [https-jsse-nio-443-exec-4] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:21:51.459  INFO 16540 --- [https-jsse-nio-443-exec-4] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:21:51.459  INFO 16540 --- [https-jsse-nio-443-exec-4] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:21:51.459  INFO 16540 --- [https-jsse-nio-443-exec-4] c.d.r.controller.login.LoginController   : user/login/page:
+2020-06-16 18:21:51.460  INFO 16540 --- [https-jsse-nio-443-exec-4] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:21:51.727  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:21:51.728  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:21:51.728  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:21:51.728  INFO 16540 --- [https-jsse-nio-443-exec-10] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:21:51.728  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:21:51.736  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:21:51.784  INFO 16540 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:21:51.784  INFO 16540 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:21:51.784  INFO 16540 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:21:51.784  INFO 16540 --- [https-jsse-nio-443-exec-2] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:21:51.784  INFO 16540 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:21:51.785  INFO 16540 --- [https-jsse-nio-443-exec-2] c.d.r.controller.login.LoginController   : user/login/page:
+2020-06-16 18:21:51.786  INFO 16540 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:21:51.959  INFO 16540 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:21:51.959  INFO 16540 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:21:51.960  INFO 16540 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:21:51.960  INFO 16540 --- [https-jsse-nio-443-exec-6] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:21:51.960  INFO 16540 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:21:51.964  INFO 16540 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:21:52.038  INFO 16540 --- [https-jsse-nio-443-exec-7] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:21:52.038  INFO 16540 --- [https-jsse-nio-443-exec-7] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:21:52.038  INFO 16540 --- [https-jsse-nio-443-exec-7] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:21:52.038  INFO 16540 --- [https-jsse-nio-443-exec-7] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:21:52.038  INFO 16540 --- [https-jsse-nio-443-exec-7] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:21:52.039  INFO 16540 --- [https-jsse-nio-443-exec-7] c.d.r.controller.login.LoginController   : user/login/page:
+2020-06-16 18:21:52.040  INFO 16540 --- [https-jsse-nio-443-exec-7] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:21:52.277  INFO 16540 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:21:52.277  INFO 16540 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:21:52.277  INFO 16540 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:21:52.277  INFO 16540 --- [https-jsse-nio-443-exec-9] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:21:52.277  INFO 16540 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:21:52.281  INFO 16540 --- [https-jsse-nio-443-exec-9] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:21:52.330  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:21:52.331  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:21:52.331  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:21:52.331  INFO 16540 --- [https-jsse-nio-443-exec-10] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:21:52.331  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:21:52.332  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.controller.login.LoginController   : user/login/page:
+2020-06-16 18:21:52.333  INFO 16540 --- [https-jsse-nio-443-exec-10] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:21:52.507  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:21:52.507  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:21:52.507  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:21:52.507  INFO 16540 --- [https-jsse-nio-443-exec-3] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:21:52.507  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:21:52.512  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:21:52.560  INFO 16540 --- [https-jsse-nio-443-exec-4] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:21:52.560  INFO 16540 --- [https-jsse-nio-443-exec-4] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:21:52.561  INFO 16540 --- [https-jsse-nio-443-exec-4] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:21:52.561  INFO 16540 --- [https-jsse-nio-443-exec-4] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:21:52.561  INFO 16540 --- [https-jsse-nio-443-exec-4] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:21:52.561  INFO 16540 --- [https-jsse-nio-443-exec-4] c.d.r.controller.login.LoginController   : user/login/page:
+2020-06-16 18:21:52.562  INFO 16540 --- [https-jsse-nio-443-exec-4] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:21:52.709  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:21:52.709  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:21:52.710  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:21:52.710  INFO 16540 --- [https-jsse-nio-443-exec-3] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:21:52.710  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:21:52.717  INFO 16540 --- [https-jsse-nio-443-exec-3] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:21:52.790  INFO 16540 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : filter filterInvocation
+2020-06-16 18:21:52.790  INFO 16540 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : getSecureObjectClass
+2020-06-16 18:21:52.791  INFO 16540 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : obtainSecurityMetadataSource
+2020-06-16 18:21:52.791  INFO 16540 --- [https-jsse-nio-443-exec-2] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
+2020-06-16 18:21:52.791  INFO 16540 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
+2020-06-16 18:21:52.791  INFO 16540 --- [https-jsse-nio-443-exec-2] c.d.r.controller.login.LoginController   : user/login/page:
+2020-06-16 18:21:52.793  INFO 16540 --- [https-jsse-nio-443-exec-2] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-16 18:22:03.589  INFO 16540 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-06-16 18:22:03.589  INFO 16540 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-4} closing ...
+2020-06-16 18:22:03.590  INFO 16540 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-4} closed

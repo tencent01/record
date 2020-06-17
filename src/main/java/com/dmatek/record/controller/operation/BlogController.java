@@ -2,6 +2,8 @@ package com.dmatek.record.controller.operation;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.dmatek.record.bean.BlogNode;
+import com.dmatek.record.services.BlogService;
 import com.dmatek.record.services.ThymeleafService;
 import org.apache.poi.POIXMLDocument;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -37,6 +39,9 @@ public class BlogController {
 
 
     @Autowired
+    private BlogService blogService;
+
+    @Autowired
     private ThymeleafService thymeleafService;
 
     /**
@@ -51,7 +56,7 @@ public class BlogController {
     @CrossOrigin
     @PostMapping("new")
     @ResponseBody
-    public boolean newBlog(@RequestBody  JSONObject jsonObject){
+    public List<BlogNode> newBlog(@RequestBody  JSONObject jsonObject){
         // 获取桌面路径
 //        FileSystemView fsv = FileSystemView.getFileSystemView();
 //        String desktop = fsv.getHomeDirectory().getPath();
@@ -108,13 +113,24 @@ public class BlogController {
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateTime=simpleDateFormat.format(calendar.getTime());
         jsonMap.put("createdate",dateTime);
-        List<Object> blogsolves=(List)jsonObject.get("blogsolves");
-        for (Object blogSolve:blogsolves){
-            Map<String,Object> blogSolveObj=(Map)blogSolve;
-            blogSolveObj.put("username",username);
-            blogSolveObj.put("datetime",dateTime);
+        Object blogsolvesObject=jsonObject.get("blogsolves");
+        if(blogsolvesObject!=null){
+            List<Object> blogsolves=(List)blogsolvesObject;
+            for (Object blogSolve:blogsolves){
+                Map<String,Object> blogSolveObj=(Map)blogSolve;
+                blogSolveObj.put("username",username);
+                blogSolveObj.put("datetime",dateTime);
+            }
+        }else{
+            List<Object> blogsolves=new ArrayList<>();
+            blogsolvesObject=blogsolves;
         }
+
         String filePath=getClass().getClassLoader().getResource("static/blog").getFile();
+        Object httpPath=jsonObject.get("path");
+        if(httpPath!=null){
+            filePath=filePath+"/"+httpPath.toString();
+        }
         File file=new File(filePath+"/"+blogName+".html");
         if(file.exists()){
             filePath=filePath+ "/"+blogName+"_"+UUID.randomUUID().toString().replace("_","")+".html";
@@ -122,13 +138,31 @@ public class BlogController {
             filePath=filePath+"/"+blogName+".html";
         }
         thymeleafService.createBlogHtml("index",filePath,jsonMap);
-        return false;
+        return blogService.allFile();
     }
 
     @CrossOrigin
-    @RequestMapping("/get")
-    public String showBlog(String path){
-        return "../static/blog/"+path;
+    @RequestMapping("get")
+    public String showBlog(String keys){
+        return "../static/blog/"+keys;
+    }
+
+    @CrossOrigin
+    @RequestMapping("delete")
+    @ResponseBody
+    public boolean deleteBlog(String key){
+        String filePath=getClass().getClassLoader().getResource("static/blog").getFile();
+        if(key!=null){
+            filePath=filePath+"/"+key;
+        }
+        File file=new File(filePath);
+        if(file.delete()){
+            file=null;
+        }
+//        System.out.println(blogService.allFile().toString());
+
+
+        return true;
     }
 
     @CrossOrigin

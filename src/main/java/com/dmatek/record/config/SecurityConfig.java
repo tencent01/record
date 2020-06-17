@@ -68,7 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/user/login",
                         "/file/get","/blog/new","/file/all","/file/read",
-                        "/blog/upload/img","/blog/get",
+                        "/blog/upload/img","/blog/get","/blog/delete",
                         "/user/update/password",
                         "/home/index","/index.html",
                         "/user/login/test","/user/login/page","/user/login/error","/error/401",
