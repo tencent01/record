@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -37,5 +38,28 @@ public class FileServiceImpl implements FileService {
             logger.error("file read exception(IOException)");
         }
         return byteArrs;
+    }
+
+    @Override
+    public void deleteDir(File file) {
+        if(file.exists()){
+            if(file.isDirectory()){
+                File[] files=file.listFiles();
+                for(int i=0;i<files.length;i++){
+                    deleteDir(files[i]);
+                }
+            }
+            file.delete();
+            return;
+        }
+        return;
+    }
+
+    @Override
+    public void createDir(String path) {
+        File file=new File(getClass().getClassLoader().getResource("static/blog").getFile()+"/"+path);
+        if(!file.exists()){
+            file.mkdirs();
+        }
     }
 }

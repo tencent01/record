@@ -15,6 +15,7 @@ import CreateBlog from "./home/CreateBlog";
 import ShowBlog from "./home/ShowBlog";
 import MenuClick from "./home/MenuClick";
 import request from "../network/request";
+import CreateRecord from "./home/CreateRecord";
 
 class Home extends Component {
 
@@ -33,6 +34,7 @@ class Home extends Component {
             showClickMenuClientX:0,
             showClickMenuClientY:0,
             node:null,
+            showCreateRecordView:false,
             treeData:[
                 {
                     title: 'parent 0',
@@ -130,6 +132,10 @@ class Home extends Component {
         this.dataToTree=this.dataToTree.bind(this);
         this.onDeleteRecord=this.onDeleteRecord.bind(this);
         this.onShowRecordView=this.onShowRecordView.bind(this);
+        this.onClickDeleteRecord=this.onClickDeleteRecord.bind(this);
+        this.onNodeData=this.onNodeData.bind(this);
+        this.onClickNewRecord=this.onClickNewRecord.bind(this);
+        this.onAllFileData=this.onAllFileData.bind(this);
     }
 
     componentDidMount() {
@@ -189,9 +195,9 @@ class Home extends Component {
         })
     }
 
-    onShowMeneClick(node,showClickMenu,showClickMenuClientX,showClickMenuClientY){
+    onShowMeneClick(showClickMenu,showClickMenuClientX,showClickMenuClientY){
+        console.log(this.state.node)
         this.setState({
-            node:node,
             showClickMenu:showClickMenu,
             showClickMenuClientX:showClickMenuClientX,
             showClickMenuClientY:showClickMenuClientY,
@@ -211,13 +217,26 @@ class Home extends Component {
         })
     }
 
+    onAllFileData(data){
+        this.setState({
+            showCreateRecordView:false,
+            treeData:this.dataToTree(data),
+        })
+    }
+
     dataToTree(data){
         let newTreeData=[];
         if(data!=null){
             for (let i = 0; i <data.length ; i++) {
                 let dataItem=data[i];
                 let dataJson=new Object();
-                dataJson.title=dataItem.name;
+                if(dataItem.state==0){
+                    dataJson.title=<span style={{ color: '#32CD99' }}>{dataItem.name}</span>;
+                }else if(dataItem.state==1){
+                    dataJson.title=dataItem.name;
+                }else if(dataItem.state==2){
+                    dataJson.title=<span style={{ color: '#FF0000' }}>{dataItem.name}</span>;
+                }
                 dataJson.key=dataItem.key;
                 dataJson.state=dataItem.state;
                 if(dataItem.blogNodes==null){
@@ -234,13 +253,17 @@ class Home extends Component {
 
     onDeleteRecord(){
         console.log(this.state.node)
-        if(this.state.node!=null){
+        if(this.state.node!=null&&this.state.node.isLeaf){
             let data=new Object();
             data.key=this.state.node.key;
             request.deleteBlog(data).then(response=>{
                 console.log(response)
                 return response.json;
             }).then(data=>{
+                console.log(data)
+                this.setState({
+                    treeData:this.dataToTree(data),
+                })
                 if(data){
                     request.getAllBlog().then(response=>{
                         return response.json();
@@ -262,13 +285,55 @@ class Home extends Component {
         })
     }
 
+    onClickDeleteRecord(){
+        let data=new Object();
+        if(this.state.node!=null){
+            data.path=this.state.node.key;
+        }else{
+            data.path=null;
+        }
+        request.deleteRecord(data).then(response=>{
+            return response.json();
+        }).then(data=>{
+            this.setState({
+                treeData:this.dataToTree(data),
+            })
+            console.log(data);
+        })
+    }
+
+    onClickNewRecord(value){
+        this.setState({
+            showCreateRecordView:value,
+        })
+    }
+
+    onNodeData(node){
+        this.setState({
+            node:node,
+        })
+    }
+
     render() {
+        const newRecordPathValue=()=>{
+            if(this.state.node!=null){
+                if(this.state.node.isLeaf){
+                    let endIndex=this.state.node.key.lastIndexOf("\\");
+                    let path=this.state.node.key.substr(0,endIndex);
+                    return path+"\\";
+                }else{
+                    return this.state.node.key+"\\";
+                }
+            }
+            return "";
+        }
         let loginView=this.state.showLogin?<Login showUpdatePassword={this.showUpdatePassword} showLogin={this.showLogin}  className="btn btn-primary float-right mr-5 mt-3"></Login>:"";
         let updatePassword=this.state.showUpdatePassword?<UpdatePassword showUpdatePassword={this.showUpdatePassword}></UpdatePassword>:"";
-        let menuAndTree=this.state.showRecordMenu?<MenuAndTree treeData={this.state.treeData} onShowMeneClick={this.onShowMeneClick} onRecordViewData={this.onRecordViewData} onShowMenuAndTree={this.onShowMenuAndTree}></MenuAndTree>:"";
+        let menuAndTree=this.state.showRecordMenu?<MenuAndTree onNodeData={this.onNodeData}  treeData={this.state.treeData} onShowMeneClick={this.onShowMeneClick} onRecordViewData={this.onRecordViewData} onShowMenuAndTree={this.onShowMenuAndTree}></MenuAndTree>:"";
         let createBlog=this.state.showCreateRecord?<CreateBlog onGetAllFileData={this.onGetAllFileData} onNodeData={this.state.node} onShowCreateRecord={this.onShowCreateRecord}></CreateBlog>:"";
         let showRecordView=this.state.showRecordView?<ShowBlog onShowRecordView={this.onShowRecordView} onShowRecordData={this.state.recordViewData}></ShowBlog>:"";
-        let showClickMenuView=this.state.showClickMenu?<MenuClick onDeleteRecord={this.onDeleteRecord} onShowCreateBlog={this.onShowCreateBlog} clientX={this.state.showClickMenuClientX} clientY={this.state.showClickMenuClientY}></MenuClick>:"";
+        let showClickMenuView=this.state.showClickMenu?<MenuClick onClickNewRecord={this.onClickNewRecord} onClickDeleteRecord={this.onClickDeleteRecord} onDeleteRecord={this.onDeleteRecord} onShowCreateBlog={this.onShowCreateBlog} clientX={this.state.showClickMenuClientX} clientY={this.state.showClickMenuClientY}></MenuClick>:"";
+        let showCreateRecordView=this.state.showCreateRecordView?<CreateRecord onAllFileData={this.onAllFileData} newRecordPathValue={newRecordPathValue()} onClickNewRecord={this.onClickNewRecord}></CreateRecord>:"";
         return (
             <div>
                 <Button type="primary" shape="circle" size="large"  onClick={e => this.onClick(e)}  className="btn btn-primary float-right mr-5 mt-3" >
@@ -282,6 +347,7 @@ class Home extends Component {
                 {/*<CkEditorDome></CkEditorDome>*/}
                 {/*<MenuTree></MenuTree>*/}
                 {showClickMenuView}
+                {showCreateRecordView}
             </div>
         );
     }

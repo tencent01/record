@@ -1,5 +1,6 @@
 package com.dmatek.record.services;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -11,4 +12,8 @@ import java.util.List;
 public interface FileService {
 
     List<byte[]> readFile(String path);
+
+    void deleteDir(File file);
+
+    void createDir(String path);
 }

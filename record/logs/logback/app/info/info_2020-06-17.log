@@ -16932,3 +16932,6 @@
 2020-06-17 18:35:06.783  INFO 9196 --- [https-jsse-nio-443-exec-6] ocationSecurityMetadataSourceServiceImpl : 该url所需要的所有权限集合
 2020-06-17 18:35:06.783  INFO 9196 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : filter invoke
 2020-06-17 18:35:06.790  INFO 9196 --- [https-jsse-nio-443-exec-6] c.d.r.filter.FilterSecurityInterceptor   : filter afterInvocation
+2020-06-17 18:38:11.877  INFO 9196 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-06-17 18:38:11.878  INFO 9196 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2020-06-17 18:38:11.879  INFO 9196 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed

@@ -52,7 +52,18 @@ const request={
         let requestUrl=url.home+url.blog+url.delete;
         console.log(requestUrl)
         return paramGet(requestUrl,blog);
-    }
+    },
+
+    deleteRecord(record){
+        let requestUrl=url.home+url.record+url.delete;
+        console.log(requestUrl)
+        return paramGet(requestUrl,record);
+    },
+    addRecord(path){
+        let requestUrl=url.home+url.record+url.add;
+        console.log(requestUrl)
+        return paramGet(requestUrl,path);
+    },
 }
 
 export default request;

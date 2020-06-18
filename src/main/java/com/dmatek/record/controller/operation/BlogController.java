@@ -150,7 +150,7 @@ public class BlogController {
     @CrossOrigin
     @RequestMapping("delete")
     @ResponseBody
-    public boolean deleteBlog(String key){
+    public List<BlogNode> deleteBlog(String key){
         String filePath=getClass().getClassLoader().getResource("static/blog").getFile();
         if(key!=null){
             filePath=filePath+"/"+key;
@@ -162,7 +162,9 @@ public class BlogController {
 //        System.out.println(blogService.allFile().toString());
 
 
-        return true;
+        List<BlogNode> list=blogService.allFile();
+        System.out.println(list.size());
+        return list;
     }
 
     @CrossOrigin

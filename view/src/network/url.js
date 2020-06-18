@@ -13,6 +13,8 @@ const url={
     upload:"/upload",
     new:"/new",
     delete:"/delete",
+    record:"/record",
+    add:"/add",
 
 }
 

@@ -5,6 +5,9 @@ import { Tree } from 'antd';
 import request from "../../network/request";
 import './style.css';
 
+
+let isRightTree=false;
+
 const { DirectoryTree } = Tree;
 
 class MenuAndTree extends Component {
@@ -97,15 +100,35 @@ class MenuAndTree extends Component {
     }
 
     onHandleClickDir(e){
-        console.log("AAAAAAAAAAAAAAAA")
         e.preventDefault();
-        this.props.onShowMeneClick(this.state.node,true,e.clientX,e.clientY);
+        if(isRightTree) {
+            isRightTree = false;
+            console.log("is node",this.state.node)
+            this.props.onShowMeneClick(true,e.clientX,e.clientY);
+        }else {
+            console.log("not node")
+
+            this.props.onNodeData(null);
+            this.props.onShowMeneClick(true,e.clientX,e.clientY);
+        }
+        // if(this.state.isRightTree){
+        //     this.setState({
+        //         isRightTree:false,
+        //     })
+        // }else{
+        //     this.setState({
+        //         node:null,
+        //     })
+        // }
+
+        // console.log(this.state.isRightTree)
+        // this.props.onShowMeneClick(this.state.node,true,e.clientX,e.clientY);
 
     }
 
     render() {
         const onSelect = (keys, event) => {
-            // console.log('Trigger Select', keys, event);
+            console.log('Trigger Select', keys, event);
             // console.log(event.node.isLeaf)
             if(event.node.isLeaf){
                 request.readFile({keys:keys}).then(response=>{
@@ -125,12 +148,9 @@ class MenuAndTree extends Component {
         };
         const onRightClick = (o) => {
             let node=o.node;
-            console.log(node)
-            this.setState({
-                node:node,
-            })
+            isRightTree=true;
             // this.props.onShowMeneClick(node,true,o.event.clientX,o.event.clientY);
-
+            this.props.onNodeData(node);
         };
 
         const cursorStyle = {
@@ -170,6 +190,7 @@ class MenuAndTree extends Component {
                                     onSelect={onSelect}
                                     onExpand={onExpand}
                                     onRightClick={onRightClick}
+                                    ref="tree"
                                     treeData={this.props.treeData}
                                 />
                             </div>

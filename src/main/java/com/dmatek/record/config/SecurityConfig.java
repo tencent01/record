@@ -69,6 +69,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/login",
                         "/file/get","/blog/new","/file/all","/file/read",
                         "/blog/upload/img","/blog/get","/blog/delete",
+                        "/record/delete","/record/add",
                         "/user/update/password",
                         "/home/index","/index.html",
                         "/user/login/test","/user/login/page","/user/login/error","/error/401",
