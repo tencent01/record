@@ -16,6 +16,7 @@ import ShowBlog from "./home/ShowBlog";
 import MenuClick from "./home/MenuClick";
 import request from "../network/request";
 import CreateRecord from "./home/CreateRecord";
+import url from "../network/url";
 
 class Home extends Component {
 
@@ -136,6 +137,7 @@ class Home extends Component {
         this.onNodeData=this.onNodeData.bind(this);
         this.onClickNewRecord=this.onClickNewRecord.bind(this);
         this.onAllFileData=this.onAllFileData.bind(this);
+        this.onClickShowRecord=this.onClickShowRecord.bind(this);
     }
 
     componentDidMount() {
@@ -231,11 +233,11 @@ class Home extends Component {
                 let dataItem=data[i];
                 let dataJson=new Object();
                 if(dataItem.state==0){
-                    dataJson.title=<span style={{ color: '#32CD99' }}>{dataItem.name}</span>;
-                }else if(dataItem.state==1){
                     dataJson.title=dataItem.name;
-                }else if(dataItem.state==2){
+                }else if(dataItem.state==1){
                     dataJson.title=<span style={{ color: '#FF0000' }}>{dataItem.name}</span>;
+                }else if(dataItem.state==2){
+                    dataJson.title=<span style={{ color: '#32CD99' }}>{dataItem.name}</span>;
                 }
                 dataJson.key=dataItem.key;
                 dataJson.state=dataItem.state;
@@ -314,6 +316,23 @@ class Home extends Component {
         })
     }
 
+    objToString(obj) {
+        var arr=[];
+        var index=0;
+        for(let item in obj){
+            arr[index++]=[item,obj[item]]
+        }
+        return new URLSearchParams(arr).toString();
+    }
+
+    onClickShowRecord(){
+        if(this.state.node.isLeaf){
+            const win=window.open(url.home+url.blog+url.get+"?keys="+this.state.node.key.replace("\\","/"));
+        }else{
+            console.log("dir")
+        }
+    }
+
     render() {
         const newRecordPathValue=()=>{
             if(this.state.node!=null){
@@ -332,7 +351,7 @@ class Home extends Component {
         let menuAndTree=this.state.showRecordMenu?<MenuAndTree onNodeData={this.onNodeData}  treeData={this.state.treeData} onShowMeneClick={this.onShowMeneClick} onRecordViewData={this.onRecordViewData} onShowMenuAndTree={this.onShowMenuAndTree}></MenuAndTree>:"";
         let createBlog=this.state.showCreateRecord?<CreateBlog onGetAllFileData={this.onGetAllFileData} onNodeData={this.state.node} onShowCreateRecord={this.onShowCreateRecord}></CreateBlog>:"";
         let showRecordView=this.state.showRecordView?<ShowBlog onShowRecordView={this.onShowRecordView} onShowRecordData={this.state.recordViewData}></ShowBlog>:"";
-        let showClickMenuView=this.state.showClickMenu?<MenuClick onClickNewRecord={this.onClickNewRecord} onClickDeleteRecord={this.onClickDeleteRecord} onDeleteRecord={this.onDeleteRecord} onShowCreateBlog={this.onShowCreateBlog} clientX={this.state.showClickMenuClientX} clientY={this.state.showClickMenuClientY}></MenuClick>:"";
+        let showClickMenuView=this.state.showClickMenu?<MenuClick onClickShowRecord={this.onClickShowRecord} onClickNewRecord={this.onClickNewRecord} onClickDeleteRecord={this.onClickDeleteRecord} onDeleteRecord={this.onDeleteRecord} onShowCreateBlog={this.onShowCreateBlog} clientX={this.state.showClickMenuClientX} clientY={this.state.showClickMenuClientY}></MenuClick>:"";
         let showCreateRecordView=this.state.showCreateRecordView?<CreateRecord onAllFileData={this.onAllFileData} newRecordPathValue={newRecordPathValue()} onClickNewRecord={this.onClickNewRecord}></CreateRecord>:"";
         return (
             <div>

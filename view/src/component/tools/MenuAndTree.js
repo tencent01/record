@@ -132,7 +132,13 @@ class MenuAndTree extends Component {
             // console.log(event.node.isLeaf)
             if(event.node.isLeaf){
                 request.readFile({keys:keys}).then(response=>{
-                    return response.text();
+                    console.log(response)
+                    if(response.status==200){
+                        return response.text();
+                    }else{
+                        return "不支持此格式"
+                    }
+                    // return response.text();
                 }).then(data=>{
                     this.props.onRecordViewData(true,data)
                     return data;

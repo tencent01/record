@@ -1,5 +1,6 @@
 server:
   port: 443
+#  port: 80
   ssl:
     key-store: tomcat.keystore
     key-store-password: tomcat

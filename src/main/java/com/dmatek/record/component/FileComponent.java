@@ -2,12 +2,16 @@ package com.dmatek.record.component;
 
 import com.dmatek.record.bean.BlogNode;
 import com.dmatek.record.bean.JSTreeNode;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +35,7 @@ public class FileComponent {
         BlogNode blogNode=new BlogNode();
         String fileName=file.getName();
         String[] fileNames=fileName.split("_");
+
         if(fileNames.length==2){
             blogNode.setName(fileNames[0]);
             blogNode.setId(fileNames[1]);
@@ -47,6 +52,23 @@ public class FileComponent {
                 blogNodes.add(fileToBlogNode(files[i]));
             }
             blogNode.setBlogNodes(blogNodes);
+        }else{
+            try {
+                Document document= Jsoup.parse(file,"UTF-8");
+                Element element=document.getElementById("blogstate");
+                if(element!=null){
+                    String stateLab=element.text();
+                    if("记录暂缓".equals(stateLab)){
+                        blogNode.setState((byte)0);
+                    }else if("记录中".equals(stateLab)){
+                        blogNode.setState((byte)1);
+                    }else if("记录完成".equals(stateLab)){
+                        blogNode.setState((byte)2);
+                    }
+                }
+            } catch (IOException e) {
+                logger.error(e.toString());
+            }
         }
         return blogNode;
     }
