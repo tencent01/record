@@ -1,5 +1,6 @@
 package com.dmatek.record.services.impl;
 
+import com.dmatek.record.lucence.Indexer;
 import com.dmatek.record.services.ThymeleafService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,7 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
@@ -27,6 +29,8 @@ public class ThymeleafServiceImpl implements ThymeleafService {
 
     @Autowired
     private TemplateEngine templateEngine;
+    @Autowired
+    private Indexer indexer;
     @Override
     public void createHtml(String modelName,String path) {
         try(FileWriter fileWriter=new FileWriter(path);) {
@@ -44,6 +48,7 @@ public class ThymeleafServiceImpl implements ThymeleafService {
             Context context=new Context();
             context.setVariables(map);
             templateEngine.process(modelName,context,fileWriter);
+            indexer.indexFile(new File(path));
         } catch (IOException e) {
             logger.error(e.toString());
         }

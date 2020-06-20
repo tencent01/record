@@ -17,6 +17,7 @@ import MenuClick from "./home/MenuClick";
 import request from "../network/request";
 import CreateRecord from "./home/CreateRecord";
 import url from "../network/url";
+import webSocket from "../network/webSocket"
 
 class Home extends Component {
 
@@ -121,6 +122,7 @@ class Home extends Component {
                 },
             ],
         }
+        this.taskRemindInterval = null;
         this.showLogin=this.showLogin.bind(this);
         this.showUpdatePassword=this.showUpdatePassword.bind(this);
         this.onShowMenuAndTree=this.onShowMenuAndTree.bind(this);
@@ -150,6 +152,33 @@ class Home extends Component {
                 treeData:this.dataToTree(data),
             })
         });
+        this.socket=new webSocket({
+            socketUrl:url.wss+url.colon+url.tworoot+url.ip+url.websocket,
+            timeout:5000,
+            socketMessage:(receive)=>{
+                console.log(receive);
+            },
+            socketClose:(msg)=>{
+                console.log(msg);
+            },
+            socketError:()=>{
+                console.log(this.state.taskState+'连接建立失败');
+            },
+            socketOpen:()=>{
+                console.log('连接建立成功');
+                // 心跳机制 定时向后端发数据
+                this.taskRemindInterval = setInterval(() => {
+                    this.socket.sendMessage({ "msgType": 0 })
+                }, 30000)
+            },
+        });
+        // 重试创建socket连接
+        try {
+            this.socket.connection();
+        } catch (e) {
+            // 捕获异常，防止js error
+            // donothing
+        }
     }
 
     onWindowClick(e){

@@ -3,6 +3,7 @@ package com.dmatek.record.controller.operation;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.dmatek.record.bean.BlogNode;
+import com.dmatek.record.lucence.Indexer;
 import com.dmatek.record.services.BlogService;
 import com.dmatek.record.services.ThymeleafService;
 import org.apache.poi.POIXMLDocument;
@@ -147,6 +148,12 @@ public class BlogController {
         return "../static/blog/"+keys;
     }
 
+
+
+
+    @Autowired
+    private Indexer indexer;
+
     @CrossOrigin
     @RequestMapping("delete")
     @ResponseBody
@@ -160,7 +167,7 @@ public class BlogController {
             file=null;
         }
 //        System.out.println(blogService.allFile().toString());
-
+        indexer.indexDelFile(new File(filePath));
 
         List<BlogNode> list=blogService.allFile();
         System.out.println(list.size());

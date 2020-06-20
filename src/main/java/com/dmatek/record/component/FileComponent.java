@@ -56,6 +56,20 @@ public class FileComponent {
             try {
                 Document document= Jsoup.parse(file,"UTF-8");
                 Element element=document.getElementById("blogstate");
+
+                /*Element[] elements=new Element[]{
+                        document.getElementById("blogname"),
+                        document.getElementById("createdate"),
+                        document.getElementById("createname"),
+                        document.getElementById("helpusername"),
+                        document.getElementById("blgdescription"),
+                        document.getElementById("blogstate")
+                };
+               for(Element element1:elements){
+                   if(element1!=null){
+                       logger.info(element1.text());
+                   }
+               }*/
                 if(element!=null){
                     String stateLab=element.text();
                     if("记录暂缓".equals(stateLab)){

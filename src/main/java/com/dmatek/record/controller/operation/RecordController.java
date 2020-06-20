@@ -1,6 +1,8 @@
 package com.dmatek.record.controller.operation;
 
 import com.dmatek.record.bean.BlogNode;
+import com.dmatek.record.lucence.Indexer;
+import com.dmatek.record.lucence.LucenceComponent;
 import com.dmatek.record.services.BlogService;
 import com.dmatek.record.services.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class RecordController {
     @Autowired
     private FileService fileService;
 
+    @Autowired
+    private Indexer indexer;
+
     @CrossOrigin
     @RequestMapping("delete")
     public List<BlogNode> delete(String path){
@@ -44,6 +49,13 @@ public class RecordController {
     public List<BlogNode> add(String path){
         fileService.createDir(path);
         return blogService.allFile();
+    }
+
+    @CrossOrigin
+    @RequestMapping("search")
+    public String search(String search){
+        indexer.search(search);
+        return "AAAAAAA";
     }
 
 }
