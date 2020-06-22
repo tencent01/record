@@ -58,55 +58,12 @@ public class BlogController {
     @PostMapping("new")
     @ResponseBody
     public List<BlogNode> newBlog(@RequestBody  JSONObject jsonObject){
-        // 获取桌面路径
-//        FileSystemView fsv = FileSystemView.getFileSystemView();
-//        String desktop = fsv.getHomeDirectory().getPath();
-//        String filePath = desktop + "/template.xls";
-//        File file = new File(filePath);
-//        try(OutputStream outputStream = new FileOutputStream(file);) {
-//
-//
-//            XWPFDocument document = new XWPFDocument(POIXMLDocument.openPackage(filePath));
-//            List<XWPFParagraph> allParagraph = document.getParagraphs();
-//
-//
-//
-//            HSSFWorkbook hssfWorkbook=new HSSFWorkbook();
-//            HSSFSheet sheet = hssfWorkbook.createSheet("Sheet1");
-//            HSSFRow row = sheet.createRow(0);
-//            row.createCell(0).setCellValue("记录名称");
-//            row.createCell(1).setCellValue("创建人");
-//            row.createCell(2).setCellValue("创建时间");
-//            row.createCell(3).setCellValue("协助人");
-//            row.createCell(4).setCellValue("记录状态");
-//            row.createCell(5).setCellValue("记录描述");
-//            row.createCell(6).setCellValue("记录过程");
-//            row.setHeightInPoints(30); // 设置行的高度
-//        } catch (FileNotFoundException e) {
-//            logger.error(e.toString());
-//        } catch (IOException e) {
-//            logger.error(e.toString());
-//        }
-//        logger.info(jsonObject.toJSONString());
-//        System.out.println(jsonObject);
-
-//        Map a=(Map)jsonObject;
-//        logger.info(a.toString());
         String blogName=(String)jsonObject.get("blogname");
-
         String helpusername=(String)jsonObject.get("helpusername");
-
         Map blogstate=(Map)jsonObject.get("blogstate");
-
-
         String blgdeScription=(String)jsonObject.get("blgdescription");
         logger.info("blgdeScription:"+blgdeScription);
 
-//        logger.info(blogName);
-//        logger.info(blgdeScription);
-//        logger.info(helpusername);
-//        logger.info(blogstate.toString());
-//        logger.info(blogsolves.toString());
         Map<String,Object> jsonMap=(Map)jsonObject;
         String username="诸葛亮";
         jsonMap.put("createname",username);
@@ -115,6 +72,7 @@ public class BlogController {
         String dateTime=simpleDateFormat.format(calendar.getTime());
         jsonMap.put("createdate",dateTime);
         Object blogsolvesObject=jsonObject.get("blogsolves");
+
         if(blogsolvesObject!=null){
             List<Object> blogsolves=(List)blogsolvesObject;
             for (Object blogSolve:blogsolves){

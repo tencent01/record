@@ -1,8 +1,10 @@
 package com.dmatek.record.controller.login;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.dmatek.record.bean.User;
 import com.dmatek.record.config.SecurityConfig;
+import com.dmatek.record.jsonwebtoken.JwtUtil;
 import com.dmatek.record.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,13 +30,23 @@ public class LoginController {
 
     @CrossOrigin
     @PostMapping("login")
-    public int login(@RequestBody User user){
+    public String login(@RequestBody User user){
+        JSONObject json=new JSONObject();
         logger.info(TAG+"/login:"+user.toString());
         User user1=userService.selectUserByUsername(user.getUsername(),user.getPassword());
         if(user1!=null){
-            return 0;
+            String token= JwtUtil.generateToken(user.getUsername());
+            json.put("success", true);
+            json.put("code", 1);
+            //json.put("result", user1);
+            json.put("message", "登陆成功");
+            json.put(JwtUtil.AUTHORIZATION,token);
+        }else{
+            json.put("success", false);
+            json.put("code", -1);
+            json.put("message", "登陆失败,密码错误");
         }
-        return 1;
+        return JSON.toJSONString(json);
     }
 
     @CrossOrigin

@@ -1,6 +1,7 @@
 package com.dmatek.record.config;
 
 
+import com.dmatek.record.filter.JWTAuthenticationFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.DigestUtils;
@@ -24,6 +26,26 @@ import org.springframework.util.DigestUtils;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final static Logger logger= LoggerFactory.getLogger(SecurityConfig.class);
+
+    /*public static String[] AUTH_WHITELIST={
+            "/static/**",
+            "/home/index","/index.html",
+            "/user/login","/user/update/password",
+            "/user/login/test","/user/login/page","/user/login/error",
+            "/error/401",
+            "/websocket",
+            "/file/get","/file/all","/file/read",
+            "/blog/upload/img","/blog/new","/blog/get","/blog/delete",
+            "/record/add","/record/delete","/record/search"
+    };*/
+
+    public static String[] AUTH_WHITELIST={
+            "/static/**",
+            "/user/login","/user/update/password",
+            "/error/401"/*,
+            "/file/get","/file/all","/file/read",*/
+
+    };
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -60,27 +82,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         });
     }
 
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         logger.info("configure 配置url");
         http.csrf().disable();
-//        http.cors();
-        http.authorizeRequests()
-                .antMatchers("/user/login",
-                        "/websocket",
-                        "/file/get","/blog/new","/file/all","/file/read",
-                        "/blog/upload/img","/blog/get","/blog/delete",
-                        "/record/delete","/record/add","/record/search",
-                        "/user/update/password",
-                        "/home/index","/index.html",
-                        "/user/login/test","/user/login/page","/user/login/error","/error/401",
-                        "/static/**")
-                .permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin().loginPage("/user/login/page").failureUrl("/user/login/error")
-                .and()
-                .exceptionHandling().accessDeniedPage("/error/401");
-        http.logout().logoutSuccessUrl("/success/ok");
+        http.authorizeRequests().antMatchers(AUTH_WHITELIST).permitAll().anyRequest().authenticated()
+                .and().formLogin().loginPage("/user/login/page").failureUrl("/user/login/error")
+                .and().logout().logoutSuccessUrl("/success/ok")
+                .and().exceptionHandling().accessDeniedPage("/error/401")
+                .and().cors()
+                .and().csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().addFilter(new JWTAuthenticationFilter(authenticationManager()));
     }
 }
