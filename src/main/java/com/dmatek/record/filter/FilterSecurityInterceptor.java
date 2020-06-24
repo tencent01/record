@@ -1,9 +1,11 @@
 package com.dmatek.record.filter;
 
 import com.dmatek.record.manager.AccessDecisionManagerImpl;
+import com.dmatek.record.services.impl.UserDetailsServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.SecurityMetadataSource;
 import org.springframework.security.access.intercept.AbstractSecurityInterceptor;
 import org.springframework.security.access.intercept.InterceptorStatusToken;
@@ -30,14 +32,18 @@ public class FilterSecurityInterceptor extends AbstractSecurityInterceptor imple
     private FilterInvocationSecurityMetadataSource filterInvocationSecurityMetadataSource;
 
     @Autowired
-    public void setAccessDecisionManager(AccessDecisionManagerImpl accessDecisionManager){
-        logger.info("set AccessDecisionManagerImpl");
+    public void setAccessDecisionManager(AccessDecisionManager accessDecisionManager){
+        logger.info("设置访问决策管理");
         super.setAccessDecisionManager(accessDecisionManager);
     }
 
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        logger.info("filter filterInvocation");
+        logger.info("调用过滤器FilterSecurityInterceptor");
+
+        logger.info(String.valueOf(userDetailsService==null));
         FilterInvocation filterInvocation=new FilterInvocation(servletRequest,servletResponse,filterChain);
         invoke(filterInvocation);
     }
@@ -46,24 +52,24 @@ public class FilterSecurityInterceptor extends AbstractSecurityInterceptor imple
 
         InterceptorStatusToken token = super.beforeInvocation(filterInvocation);
         try {
-            logger.info("filter invoke");
+            logger.info("执行下一个过滤器");
             //执行下一个拦截器
             filterInvocation.getChain().doFilter(filterInvocation.getRequest(), filterInvocation.getResponse());
         } finally {
-            logger.info("filter afterInvocation");
+            logger.info("执行完过滤器后");
             super.afterInvocation(token, null);
         }
     }
 
     @Override
     public Class<?> getSecureObjectClass() {
-        logger.info("getSecureObjectClass");
+        logger.info("获取数据对象类型");
         return FilterInvocation.class;
     }
 
     @Override
     public SecurityMetadataSource obtainSecurityMetadataSource() {
-        logger.info("obtainSecurityMetadataSource");
+        logger.info("获取安全元数据");
         return this.filterInvocationSecurityMetadataSource;
     }
 

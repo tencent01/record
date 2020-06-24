@@ -111,19 +111,6 @@ class MenuAndTree extends Component {
             this.props.onNodeData(null);
             this.props.onShowMeneClick(true,e.clientX,e.clientY);
         }
-        // if(this.state.isRightTree){
-        //     this.setState({
-        //         isRightTree:false,
-        //     })
-        // }else{
-        //     this.setState({
-        //         node:null,
-        //     })
-        // }
-
-        // console.log(this.state.isRightTree)
-        // this.props.onShowMeneClick(this.state.node,true,e.clientX,e.clientY);
-
     }
 
     render() {
@@ -131,7 +118,7 @@ class MenuAndTree extends Component {
             console.log('Trigger Select', keys, event);
             // console.log(event.node.isLeaf)
             if(event.node.isLeaf){
-                request.readFile({keys:keys}).then(response=>{
+                request.readFile({keys:keys},this.props.token).then(response=>{
                     console.log(response)
                     if(response.status==200){
                         return response.text();

@@ -25,6 +25,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final static Logger logger= LoggerFactory.getLogger(UserDetailsServiceImpl.class);
 
+
+    public UserDetailsServiceImpl() {
+        logger.info("UserDetailsServiceImpl构造器————————————————————————————————————————————————————————————————————————————————————————————————-");
+    }
+
     @Autowired
     private UserMapper userMapper;
 
@@ -33,8 +38,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        logger.info("loadUserByUsername get UserDetails");
+        logger.info("根据用户名获取用户角色"+username);
         User user=userMapper.loadUserByUsername(username);
+        logger.info(user.toString());
         if(user!=null){
             List<Role> roles = roleMapper.getRolesByUserId(user.getId());
             user.setAuthorities(roles);

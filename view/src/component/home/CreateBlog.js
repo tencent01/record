@@ -127,12 +127,8 @@ class CreateBlog extends Component {
         const onFinish = values => {
             values.blgdescription=this.state.blgdescription;
             this.state.blogsolves.forEach((value,key,map)=>{
-                // console.log("value",value);
-                // console.log("key",key);
-                // console.log("map",map);
                 let blogsolve=new Object();
                 blogsolve["blogsolve"]=value;
-                // console.log(blogsolve);
                 values.blogsolves[key]=blogsolve;
             })
             let node=this.props.onNodeData;
@@ -141,9 +137,7 @@ class CreateBlog extends Component {
                 if(node.isLeaf){
                     let keyturl = node.key.substr(0,node.key.lastIndexOf('\\'));
                     values.path=keyturl;
-                    // console.log(keyturl)
                 }else{
-                    // console.log(node.key)
                     values.path=node.key;
                 }
             }else{
@@ -151,10 +145,10 @@ class CreateBlog extends Component {
             }
 
             console.log(values)
-            request.newBlog(values).then(res=>{
+            request.newBlog(values,this.props.token).then(res=>{
                 return res.json();
             }).then(data=>{
-                // console.log(data)
+                console.log(data)
                 this.props.onGetAllFileData(data);
                 return data;
             })

@@ -79,8 +79,8 @@ class Login extends Component {
         });
     }
 
-    onHandleClick(){
-        this.props.showLogin(false);
+    onHandleClick(data){
+        this.props.showLogin(false,data);
     }
 
     onHandleShowCreateAccount(){
@@ -115,9 +115,13 @@ class Login extends Component {
                 console.log(response)
                 return response.json();
             }).then(
-                data=>{
-                    if(data==0){
-                        this.onHandleClick();
+                data=>{/*
+                    Authorization: "BearereyJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6ImFkbWluIiwiZXhwIjoxNTkzMDUwODYzLCJpYXQiOjE1OTI5NjQ0NjN9.B-GY0B5nrZdcs_YPnQV3qv5pLOmmY5KUcSoQTDixj-w"
+                    code: 1
+                    message: "登陆成功"
+                    success: true*/
+                    if(data.code==1&&data.message=="登陆成功"&&data.success){
+                        this.onHandleClick(data.Authorization);
                     }
                     console.log(data);
                 }

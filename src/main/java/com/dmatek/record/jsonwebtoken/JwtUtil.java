@@ -50,15 +50,15 @@ public class JwtUtil {
 
     public static String validateToken(String token){
         try{
-            logger.info(token);
+            logger.info("token:"+token);
             Map<String,Object> body=Jwts.parser()
                     .setSigningKey(SECRET)
                     .parseClaimsJws(token.replace(TOKEN_PREFIX,""))
                     .getBody();
 
-            logger.info(body.toString());
+            logger.info("body:"+body.toString());
             String userName=body.get("userName").toString();
-            logger.info(userName);
+            logger.info("userName:"+userName);
             return userName;
         }catch (ExpiredJwtException e){
             throw e;

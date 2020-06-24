@@ -9,7 +9,12 @@ import com.dmatek.record.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -27,15 +32,23 @@ public class LoginController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     @CrossOrigin
     @PostMapping("login")
     public String login(@RequestBody User user){
         JSONObject json=new JSONObject();
         logger.info(TAG+"/login:"+user.toString());
-        User user1=userService.selectUserByUsername(user.getUsername(),user.getPassword());
+        logger.info(TAG+"md5:"+DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
+        DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
+        User user1=userService.selectUserByUsername(user.getUsername(),DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
+        logger.info(TAG+user1);
         if(user1!=null){
             String token= JwtUtil.generateToken(user.getUsername());
+            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken=new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword());
+            Authentication authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
             json.put("success", true);
             json.put("code", 1);
             //json.put("result", user1);

@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.dmatek.record.config.SecurityConfig;
 import com.dmatek.record.jsonwebtoken.JwtUtil;
+import com.dmatek.record.services.impl.UserDetailsServiceImpl;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureException;
@@ -11,11 +12,15 @@ import io.jsonwebtoken.UnsupportedJwtException;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -32,22 +37,33 @@ import java.util.Enumeration;
  * @Date: 2020/6/22 13:40
  * @Version 1.0
  */
-public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
+@Component
+public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
 
 
     private final static Logger logger= LoggerFactory.getLogger(JWTAuthenticationFilter.class);
 
-    public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
+
+
+
+    /*public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
         super(authenticationManager);
-    }
+    }*/
+
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         String url=request.getRequestURI();
         String header=request.getHeader(JwtUtil.AUTHORIZATION);
         JSONObject json=new JSONObject();
+
+        logger.info(String.valueOf(userDetailsService==null));
+        logger.info("请求访问的url:"+url);
         if(null!= SecurityConfig.AUTH_WHITELIST&& Arrays.asList(SecurityConfig.AUTH_WHITELIST).contains(url)){
+            logger.info("不存在token的公开url");
             chain.doFilter(request,response);
         }else if(StringUtils.isBlank(header)||!header.startsWith(JwtUtil.TOKEN_PREFIX)){
             json.put("codeCheck",false);
@@ -56,6 +72,7 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
             response.getWriter().write(JSON.toJSONString(json));
         }else{
             try {
+                logger.info("token验证开始");
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken=getAuthentication(request,response);
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
                 chain.doFilter(request,response);
@@ -106,8 +123,11 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
             try{
                 userName=JwtUtil.validateToken(token);
                 if(StringUtils.isNotBlank(userName)){
-                    return new UsernamePasswordAuthenticationToken(userName,null,new ArrayList<>());
+                    logger.info("token中获取的用户名:"+userName);
+                    UserDetails userDetails=userDetailsService.loadUserByUsername(userName);
+                    return new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
                 }
+                logger.info("token中无法获取用户名");
             }catch (ExpiredJwtException e){
                 throw e;
             }catch (UnsupportedJwtException e){

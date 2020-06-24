@@ -2,7 +2,6 @@
 export function httpGet(url) {
     let header=new Headers();
     header.append('content-Type','application/json');
-    header.append('Authorization','BearereyJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6ImFkbWluIiwiZXhwIjoxNTkyODk4NjkzLCJpYXQiOjE1OTI4MTIyOTN9.bHMqEPAK4kwfH-E3DUgeVeccakBti4ilHU34xBPVAu8');
 
     return fetch(url,{
         method:'GET',
@@ -13,10 +12,6 @@ export function httpGet(url) {
 export function paramGet(url,param) {
     return fetch(url+'?'+objToString(param),{
         method:'GET',
-        headers:{
-            "x-csrf-token": 'BearereyJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6ImFkbWluIiwiZXhwIjoxNTkyODk4NjkzLCJpYXQiOjE1OTI4MTIyOTN9.bHMqEPAK4kwfH-E3DUgeVeccakBti4ilHU34xBPVAu8',
-            'Authorization':'BearereyJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6ImFkbWluIiwiZXhwIjoxNTkyODk4NjkzLCJpYXQiOjE1OTI4MTIyOTN9.bHMqEPAK4kwfH-E3DUgeVeccakBti4ilHU34xBPVAu8'
-        }
     })
 }
 
@@ -30,11 +25,21 @@ export function httpPost(url,param) {
             'user-agent': 'Mozilla/4.0 MDN Example',
             // 'content-type': 'application/x-www-form-urlencoded'
             'content-Type': 'application/json',
-            'Authorization':'BearereyJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6ImFkbWluIiwiZXhwIjoxNTkyODk4NjkzLCJpYXQiOjE1OTI4MTIyOTN9.bHMqEPAK4kwfH-E3DUgeVeccakBti4ilHU34xBPVAu8'
         },
         // mode: 'cors', // no-cors, cors, *same-origin
         // redirect: 'follow', // manual, *follow, error
         // referrer: 'no-referrer', // *client, no-referrer
+    })
+}
+
+export function httpFormNotTokenPost(url,param) {
+    return fetch(url,{
+        method: 'POST',
+        body: JSON.stringify(param),
+        headers: {
+            'user-agent': 'Mozilla/4.0 MDN Example',
+            'content-Type': 'application/x-www-form-urlencoded',
+        },
     })
 }
 
@@ -50,23 +55,38 @@ export function httpFormPost(url,param) {
 }
 
 export function httpTokenPost(url,param,token) {
+    console.log(token)
     return fetch(url,{
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        body: JSON.stringify(param), // must match 'Content-Type' header
-        // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        // credentials: 'same-origin', // include, same-origin, *omit
-        headers: {
+        method:'POST',
+        body: JSON.stringify(param),
+        headers:{
             'user-agent': 'Mozilla/4.0 MDN Example',
-            // 'content-type': 'application/x-www-form-urlencoded'
             'content-Type': 'application/json',
-            "x-csrf-token": token,
-            'Authorization':'BearereyJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6ImFkbWluIiwiZXhwIjoxNTkyODk4NjkzLCJpYXQiOjE1OTI4MTIyOTN9.bHMqEPAK4kwfH-E3DUgeVeccakBti4ilHU34xBPVAu8'
-        },
-        // mode: 'cors', // no-cors, cors, *same-origin
-        // redirect: 'follow', // manual, *follow, error
-        // referrer: 'no-referrer', // *client, no-referrer
+            'Authorization':token
+        }
     })
+}
 
+export function httpTokenGet(url,token) {
+    let header=new Headers();
+    header.append('content-Type','application/json');
+    header.append('Authorization',token);
+
+    return fetch(url,{
+        method:'GET',
+        headers:header
+    });
+}
+
+export function paramTokenGet(url,param,token) {
+    let header=new Headers();
+    header.append('content-Type','application/json');
+    header.append('Authorization',token);
+
+    return fetch(url+'?'+objToString(param),{
+        method:'GET',
+        headers:header
+    })
 }
 
 function objToString(obj) {

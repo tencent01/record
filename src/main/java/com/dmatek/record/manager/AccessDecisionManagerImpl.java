@@ -36,18 +36,27 @@ public class AccessDecisionManagerImpl implements AccessDecisionManager {
     @Override
     public void decide(Authentication authentication, Object object, Collection<ConfigAttribute> collection) throws AccessDeniedException, InsufficientAuthenticationException {
         logger.info("decide 通过传递的参数来决定用户是否有访问对应受保护对象的权限");
+        logger.info("authentication name:"+authentication.getName());
+        logger.info("authentication size:"+authentication.getAuthorities().size());
         if(null==collection||0>=collection.size()){
             return;
         }else {
             String needRole;
             for (Iterator<ConfigAttribute> iterator=collection.iterator();iterator.hasNext();){
                 needRole=iterator.next().getAttribute();
+                logger.info("needRole:"+needRole);
                 for (GrantedAuthority grantedAuthority:authentication.getAuthorities()){
+                    logger.info("Authority:"+grantedAuthority.getAuthority());
                     if(needRole.trim().equals(grantedAuthority.getAuthority().trim())){
+                        logger.info("有访问权限");
+                        return;
+                    }else if(grantedAuthority.getAuthority().equals("ROLE_ANONYMOUS")){
+                        logger.info("公开权限");
                         return;
                     }
                 }
             }
+            logger.info("当前访问没有权限");
             throw new AccessDeniedException("当前访问没有权限");
         }
     }

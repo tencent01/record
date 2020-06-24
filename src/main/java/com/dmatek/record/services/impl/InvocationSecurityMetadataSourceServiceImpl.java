@@ -1,7 +1,9 @@
 package com.dmatek.record.services.impl;
 
 import com.dmatek.record.bean.Permission;
+import com.dmatek.record.bean.Role;
 import com.dmatek.record.mapper.PermissionMapper;
+import com.dmatek.record.mapper.RoleMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,13 @@ public class InvocationSecurityMetadataSourceServiceImpl implements FilterInvoca
     private final static Logger logger= LoggerFactory.getLogger(InvocationSecurityMetadataSourceServiceImpl.class);
     @Autowired
     private PermissionMapper permissionMapper;
+
+    @Autowired
+    private RoleMapper roleMapper;
+
+    public InvocationSecurityMetadataSourceServiceImpl() {
+        logger.info("构造器 请求与权限的对应关系");
+    }
 
     /**
      * 每一个资源所需要的角色 Collection<ConfigAttribute>决策器会用到
@@ -57,6 +66,7 @@ public class InvocationSecurityMetadataSourceServiceImpl implements FilterInvoca
                 return map.get(url);
             }
         }
+        logger.info("该url权限集合为null");
         return null;
     }
 
@@ -72,14 +82,14 @@ public class InvocationSecurityMetadataSourceServiceImpl implements FilterInvoca
     }
 
     /**
-     * 指示该类是否能够为指定的方法调用或Web请求提供
+     * 指示该类是否能够为指定的方法调用或Web请求提供ConfigAttributes
      *
      * @param aClass
      * @return
      */
     @Override
     public boolean supports(Class<?> aClass) {
-        logger.info("是否能够为指定的方法调用或Web请求提供");
+        logger.info("是否能够为指定的方法调用或Web请求提供ConfigAttributes:返回TRUE");
         return true;
     }
 
@@ -88,24 +98,28 @@ public class InvocationSecurityMetadataSourceServiceImpl implements FilterInvoca
      * 初始化 所有资源 对应的角色
      */
     public void loadResourceDefine() {
+        logger.info("初始化所有资源对应的角色");
         map = new HashMap<>(16);
         //权限资源 和 角色对应的表  也就是 角色权限 中间表
         List<Permission> permissions = permissionMapper.getPermissions();
 
         //某个资源 可以被哪些角色访问
         for (Permission permission : permissions) {
-
             String url = permission.getUrl();
-            String name = permission.getName();
-            ConfigAttribute role = new SecurityConfig(name);
+            List<Role> roles=roleMapper.getRolesByPermssionId(permission.getId());
+            for(Role role:roles){
 
-            if(map.containsKey(url)){
-                map.get(url).add(role);
-            }else{
-                List<ConfigAttribute> list =  new ArrayList<>();
-                list.add(role);
-                map.put(url,list);
+                ConfigAttribute roleName = new SecurityConfig(role.getName());
+                if(map.containsKey(url)){
+                    map.get(url).add(roleName);
+                }else{
+                    List<ConfigAttribute> list =  new ArrayList<>();
+                    list.add(roleName);
+                    map.put(url,list);
+                }
             }
+
+
         }
     }
 

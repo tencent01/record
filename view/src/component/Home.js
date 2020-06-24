@@ -25,6 +25,7 @@ class Home extends Component {
         super(props);
         this.state={
             showLogin:false,
+            token:null,
             showCreateAccount:false,
             showUpdatePassword:false,
             showRecordMenu:true,
@@ -195,8 +196,9 @@ class Home extends Component {
         }
     }
 
-    showLogin(value){
+    showLogin(value,token){
         this.setState({
+            token:token,
             showLogin:value,
         })
     }
@@ -377,8 +379,8 @@ class Home extends Component {
         }
         let loginView=this.state.showLogin?<Login showUpdatePassword={this.showUpdatePassword} showLogin={this.showLogin}  className="btn btn-primary float-right mr-5 mt-3"></Login>:"";
         let updatePassword=this.state.showUpdatePassword?<UpdatePassword showUpdatePassword={this.showUpdatePassword}></UpdatePassword>:"";
-        let menuAndTree=this.state.showRecordMenu?<MenuAndTree onNodeData={this.onNodeData}  treeData={this.state.treeData} onShowMeneClick={this.onShowMeneClick} onRecordViewData={this.onRecordViewData} onShowMenuAndTree={this.onShowMenuAndTree}></MenuAndTree>:"";
-        let createBlog=this.state.showCreateRecord?<CreateBlog onGetAllFileData={this.onGetAllFileData} onNodeData={this.state.node} onShowCreateRecord={this.onShowCreateRecord}></CreateBlog>:"";
+        let menuAndTree=this.state.showRecordMenu?<MenuAndTree token={this.state.token} onNodeData={this.onNodeData}  treeData={this.state.treeData} onShowMeneClick={this.onShowMeneClick} onRecordViewData={this.onRecordViewData} onShowMenuAndTree={this.onShowMenuAndTree}></MenuAndTree>:"";
+        let createBlog=this.state.showCreateRecord?<CreateBlog token={this.state.token} onGetAllFileData={this.onGetAllFileData} onNodeData={this.state.node} onShowCreateRecord={this.onShowCreateRecord}></CreateBlog>:"";
         let showRecordView=this.state.showRecordView?<ShowBlog onShowRecordView={this.onShowRecordView} onShowRecordData={this.state.recordViewData}></ShowBlog>:"";
         let showClickMenuView=this.state.showClickMenu?<MenuClick onClickShowRecord={this.onClickShowRecord} onClickNewRecord={this.onClickNewRecord} onClickDeleteRecord={this.onClickDeleteRecord} onDeleteRecord={this.onDeleteRecord} onShowCreateBlog={this.onShowCreateBlog} clientX={this.state.showClickMenuClientX} clientY={this.state.showClickMenuClientY}></MenuClick>:"";
         let showCreateRecordView=this.state.showCreateRecordView?<CreateRecord onAllFileData={this.onAllFileData} newRecordPathValue={newRecordPathValue()} onClickNewRecord={this.onClickNewRecord}></CreateRecord>:"";

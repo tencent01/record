@@ -40,8 +40,10 @@ public class LucenceComponent {
     @PostConstruct
     public void indexInit(){
         try {
-            indexer.indexClear();
-            indexer.indexAll(new File(getClass().getClassLoader().getResource("static/blog").getFile()));
+            if(indexer!=null){
+                indexer.indexClear();
+                indexer.indexAll(new File(getClass().getClassLoader().getResource("static/blog").getFile()));
+            }
         } catch (IOException e) {
             logger.error(e.toString());
         }
