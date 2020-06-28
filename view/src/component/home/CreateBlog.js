@@ -149,7 +149,9 @@ class CreateBlog extends Component {
                 return res.json();
             }).then(data=>{
                 console.log(data)
-                this.props.onGetAllFileData(data);
+                if(data.codeCheck){
+                    this.props.onGetAllFileData(data.msg);
+                }
                 return data;
             })
             console.log('Received values of form: ', values);

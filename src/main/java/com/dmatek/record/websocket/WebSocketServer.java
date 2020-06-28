@@ -1,5 +1,6 @@
 package com.dmatek.record.websocket;
 
+import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -20,7 +21,8 @@ public class WebSocketServer {
     private final static Logger logger= LoggerFactory.getLogger(WebSocketServer.class);
 
     @OnOpen
-    public void onOpen(){
+    public void onOpen(Session session){
+        System.out.println(session.getId());
         logger.info("open");
     }
 
@@ -33,6 +35,9 @@ public class WebSocketServer {
     @OnMessage
     public void onMessage(String message,Session session){
         logger.info("message"+message);
+        JSONObject jsonObject=JSONObject.parseObject(message);
+        logger.info(jsonObject.getString("msgType"));
+        logger.info(jsonObject.getString("token"));
         try {
             session.getBasicRemote().sendText("AAAAAAA");
         } catch (IOException e) {

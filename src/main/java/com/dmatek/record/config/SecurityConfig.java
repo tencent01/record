@@ -56,8 +56,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/static/**",
             "/user/login","/user/update/password","/user/login/page",
             "/error/401",
-            "/file/all"
-            /*"/file/get","/file/all","/file/read",*/
+            "/file/all",
+            "/blog/get",
+            "/websocket"
 
     };
 

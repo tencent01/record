@@ -57,7 +57,7 @@ public class BlogController {
     @CrossOrigin
     @PostMapping("new")
     @ResponseBody
-    public List<BlogNode> newBlog(@RequestBody  JSONObject jsonObject){
+    public JSONObject newBlog(@RequestBody  JSONObject jsonObject){
         String blogName=(String)jsonObject.get("blogname");
         String helpusername=(String)jsonObject.get("helpusername");
         Map blogstate=(Map)jsonObject.get("blogstate");
@@ -97,7 +97,11 @@ public class BlogController {
             filePath=filePath+"/"+blogName+".html";
         }
         thymeleafService.createBlogHtml("index",filePath,jsonMap);
-        return blogService.allFile();
+
+        JSONObject json=new JSONObject();
+        json.put("codeCheck",true);
+        json.put("msg",blogService.allFile());
+        return json;
     }
 
     @CrossOrigin

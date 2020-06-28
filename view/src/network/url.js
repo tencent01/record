@@ -8,7 +8,7 @@ const url={
     port80:"80",
     port443:"443",
     colon:":",
-    home:"https://127.0.0.1",
+    home:"http://127.0.0.1",
     root:"/",
     websocket:"/websocket",
     user:"/user",

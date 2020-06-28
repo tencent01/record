@@ -67,6 +67,7 @@ class Login extends Component {
         this.lastX = e.clientX;
         this.lastY = e.clientY;
     }
+
     onMouseOut(e){
         this.setState({
             cursorStyle:false

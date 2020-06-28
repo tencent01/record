@@ -17,7 +17,7 @@ import MenuClick from "./home/MenuClick";
 import request from "../network/request";
 import CreateRecord from "./home/CreateRecord";
 import url from "../network/url";
-import webSocket from "../network/webSocket"
+import webSocket from "../network/webSocket";
 
 class Home extends Component {
 
@@ -153,33 +153,7 @@ class Home extends Component {
                 treeData:this.dataToTree(data),
             })
         });
-        this.socket=new webSocket({
-            socketUrl:url.wss+url.colon+url.tworoot+url.ip+url.websocket,
-            timeout:5000,
-            socketMessage:(receive)=>{
-                console.log(receive);
-            },
-            socketClose:(msg)=>{
-                console.log(msg);
-            },
-            socketError:()=>{
-                console.log(this.state.taskState+'连接建立失败');
-            },
-            socketOpen:()=>{
-                console.log('连接建立成功');
-                // 心跳机制 定时向后端发数据
-                this.taskRemindInterval = setInterval(() => {
-                    this.socket.sendMessage({ "msgType": 0 })
-                }, 30000)
-            },
-        });
-        // 重试创建socket连接
-        try {
-            this.socket.connection();
-        } catch (e) {
-            // 捕获异常，防止js error
-            // donothing
-        }
+
     }
 
     onWindowClick(e){
@@ -200,6 +174,36 @@ class Home extends Component {
         this.setState({
             token:token,
             showLogin:value,
+        },()=>{
+            this.socket=new webSocket({
+                socketUrl:url.ws+url.colon+url.tworoot+url.ip+url.websocket,
+                timeout:5000,
+                token:this.state.token,
+                socketMessage:(receive)=>{
+                    console.log(receive);
+                },
+                socketClose:(msg)=>{
+                    console.log(msg);
+                },
+                socketError:()=>{
+                    console.log(this.state.taskState+'连接建立失败');
+                },
+                socketOpen:()=>{
+                    console.log('连接建立成功');
+                    // 心跳机制 定时向后端发数据
+                    this.taskRemindInterval = setInterval(() => {
+                        this.socket.sendMessage({ "msgType": 0
+                        ,token:this.state.token})
+                    }, 30000)
+                },
+            });
+            // 重试创建socket连接
+            try {
+                this.socket.connection();
+            } catch (e) {
+                // 捕获异常，防止js error
+                // donothing
+            }
         })
     }
     showUpdatePassword(showUpdatePasswordValue,showLoginValue){
@@ -289,7 +293,7 @@ class Home extends Component {
         if(this.state.node!=null&&this.state.node.isLeaf){
             let data=new Object();
             data.key=this.state.node.key;
-            request.deleteBlog(data).then(response=>{
+            request.deleteBlog(data,this.state.token).then(response=>{
                 console.log(response)
                 return response.json;
             }).then(data=>{
@@ -325,7 +329,7 @@ class Home extends Component {
         }else{
             data.path=null;
         }
-        request.deleteRecord(data).then(response=>{
+        request.deleteRecord(data,this.state.token).then(response=>{
             return response.json();
         }).then(data=>{
             this.setState({
@@ -357,10 +361,12 @@ class Home extends Component {
     }
 
     onClickShowRecord(){
-        if(this.state.node.isLeaf){
-            const win=window.open(url.home+url.blog+url.get+"?keys="+this.state.node.key.replace("\\","/"));
-        }else{
-            console.log("dir")
+        if(this.state.node!=null){
+            if(this.state.node.isLeaf){
+                const win=window.open(url.home+url.blog+url.get+"?keys="+this.state.node.key.replace("\\","/"));
+            }else{
+                console.log("dir")
+            }
         }
     }
 
@@ -383,7 +389,7 @@ class Home extends Component {
         let createBlog=this.state.showCreateRecord?<CreateBlog token={this.state.token} onGetAllFileData={this.onGetAllFileData} onNodeData={this.state.node} onShowCreateRecord={this.onShowCreateRecord}></CreateBlog>:"";
         let showRecordView=this.state.showRecordView?<ShowBlog onShowRecordView={this.onShowRecordView} onShowRecordData={this.state.recordViewData}></ShowBlog>:"";
         let showClickMenuView=this.state.showClickMenu?<MenuClick onClickShowRecord={this.onClickShowRecord} onClickNewRecord={this.onClickNewRecord} onClickDeleteRecord={this.onClickDeleteRecord} onDeleteRecord={this.onDeleteRecord} onShowCreateBlog={this.onShowCreateBlog} clientX={this.state.showClickMenuClientX} clientY={this.state.showClickMenuClientY}></MenuClick>:"";
-        let showCreateRecordView=this.state.showCreateRecordView?<CreateRecord onAllFileData={this.onAllFileData} newRecordPathValue={newRecordPathValue()} onClickNewRecord={this.onClickNewRecord}></CreateRecord>:"";
+        let showCreateRecordView=this.state.showCreateRecordView?<CreateRecord token={this.state.token} onAllFileData={this.onAllFileData} newRecordPathValue={newRecordPathValue()} onClickNewRecord={this.onClickNewRecord}></CreateRecord>:"";
         return (
             <div>
                 <Button type="primary" shape="circle" size="large"  onClick={e => this.onClick(e)}  className="btn btn-primary float-right mr-5 mt-3" >

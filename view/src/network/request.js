@@ -48,21 +48,22 @@ const request={
         return httpTokenPost(requestUrl,blog,token);
     },
 
-    deleteBlog(blog){
+    deleteBlog(blog,token){
         let requestUrl=url.home+url.blog+url.delete;
         console.log(requestUrl)
-        return paramGet(requestUrl,blog);
+        return paramTokenGet(requestUrl,blog,token);
     },
 
-    deleteRecord(record){
+    deleteRecord(record,token){
         let requestUrl=url.home+url.record+url.delete;
         console.log(requestUrl)
-        return paramGet(requestUrl,record);
+        return paramTokenGet(requestUrl,record,token);
     },
-    addRecord(path){
+
+    addRecord(path,token){
         let requestUrl=url.home+url.record+url.add;
         console.log(requestUrl)
-        return paramGet(requestUrl,path);
+        return paramTokenGet(requestUrl,path,token);
     },
 }
 

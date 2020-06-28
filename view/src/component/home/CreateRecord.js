@@ -110,7 +110,7 @@ class CreateRecord extends Component {
                                        onSearch={value => {
                                            let path=new Object();
                                            path.path=value;
-                                           request.addRecord(path).then(response=>{
+                                           request.addRecord(path,this.props.token).then(response=>{
                                                return response.json();
                                            }).then(data=>{
                                                this.props.onAllFileData(data);
