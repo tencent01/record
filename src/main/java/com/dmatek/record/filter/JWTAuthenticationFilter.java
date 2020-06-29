@@ -62,7 +62,8 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
         logger.info(String.valueOf(userDetailsService==null));
         logger.info("请求访问的url:"+url);
-        if(null!= SecurityConfig.AUTH_WHITELIST&& Arrays.asList(SecurityConfig.AUTH_WHITELIST).contains(url)){
+        String[] urls=url.split("/");
+        if((null!= SecurityConfig.AUTH_WHITELIST&& Arrays.asList(SecurityConfig.AUTH_WHITELIST).contains(url))||(urls.length>1&&"static".equalsIgnoreCase(urls[1]))){
             logger.info("不存在token的公开url");
             chain.doFilter(request,response);
         }else if(StringUtils.isBlank(header)||!header.startsWith(JwtUtil.TOKEN_PREFIX)){

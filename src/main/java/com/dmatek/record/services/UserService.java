@@ -1,7 +1,10 @@
 package com.dmatek.record.services;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dmatek.record.bean.User;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @Author: admin
@@ -15,5 +18,6 @@ public interface UserService {
 
     boolean updateUserPassword(String username,String password);
 
+    List<JSONObject> selectAllUser();
 
 }

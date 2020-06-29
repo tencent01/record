@@ -17,6 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @Author: admin
  * @Description:
@@ -107,4 +109,12 @@ public class LoginController {
         logger.info(TAG+"/login/error:");
         return "this is login error page";
     }
+
+    @CrossOrigin
+    @GetMapping("all")
+    public List<JSONObject> getAllUser(){
+        logger.info(TAG+"all");
+        return userService.selectAllUser();
+    }
+
 }

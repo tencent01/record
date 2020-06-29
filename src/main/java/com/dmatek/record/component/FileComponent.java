@@ -72,11 +72,11 @@ public class FileComponent {
                }*/
                 if(element!=null){
                     String stateLab=element.text();
-                    if("记录暂缓".equals(stateLab)){
+                    if("暂缓".equals(stateLab)){
                         blogNode.setState((byte)0);
-                    }else if("记录中".equals(stateLab)){
+                    }else if("进行中".equals(stateLab)){
                         blogNode.setState((byte)1);
-                    }else if("记录完成".equals(stateLab)){
+                    }else if("已完成".equals(stateLab)){
                         blogNode.setState((byte)2);
                     }
                 }

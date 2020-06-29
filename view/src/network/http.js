@@ -43,13 +43,13 @@ export function httpFormNotTokenPost(url,param) {
     })
 }
 
-export function httpFormPost(url,param) {
+export function httpFormPost(url,param,token) {
+    let header=new Headers();
+    header.append('Authorization',token);
     return fetch(url,{
         method: 'post',
         body:param,
-        headers:{
-            'Authorization':'BearereyJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6ImFkbWluIiwiZXhwIjoxNTkyODk4NjkzLCJpYXQiOjE1OTI4MTIyOTN9.bHMqEPAK4kwfH-E3DUgeVeccakBti4ilHU34xBPVAu8'
-        },
+        headers:header,
         contextType:false,
     })
 }

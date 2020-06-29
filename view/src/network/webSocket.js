@@ -1,4 +1,5 @@
-module.exports=class webSocket{
+import request from "./request";
+export default class webSocket{
     constructor(param={}) {
         this.param=param;
         this.reconnectCount=0;

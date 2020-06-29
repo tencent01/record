@@ -15,6 +15,7 @@ import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -59,25 +60,43 @@ public class BlogController {
     @ResponseBody
     public JSONObject newBlog(@RequestBody  JSONObject jsonObject){
         String blogName=(String)jsonObject.get("blogname");
-        String helpusername=(String)jsonObject.get("helpusername");
-        Map blogstate=(Map)jsonObject.get("blogstate");
-        String blgdeScription=(String)jsonObject.get("blgdescription");
-        logger.info("blgdeScription:"+blgdeScription);
+        Object helpusernames=jsonObject.get("helpusername");
+
+        if(helpusernames!=null){
+            String helpuser="";
+            List<Object> helpusernameList=(List)helpusernames;
+            for (int i = 0; i < helpusernameList.size(); i++) {
+                String userTemp=(String)helpusernameList.get(i);
+                String[] userTempArr=userTemp.split("_");
+                if(i==0){
+                    helpuser+=userTempArr[0];
+                }else{
+                    helpuser+=","+userTempArr[0];
+                }
+            }
+            jsonObject.put("helpusername",helpuser);
+        }
+
+//        Map blogstate=(Map)jsonObject.get("blogstate");
+//        String blgdeScription=(String)jsonObject.get("blgdescription");
+//        logger.info("blgdeScription:"+blgdeScription);
 
         Map<String,Object> jsonMap=(Map)jsonObject;
-        String username="诸葛亮";
-        jsonMap.put("createname",username);
+
+        jsonMap.put("createname",SecurityContextHolder.getContext().getAuthentication().getName());
+
         Calendar calendar= Calendar.getInstance();
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateTime=simpleDateFormat.format(calendar.getTime());
-        jsonMap.put("createdate",dateTime);
-        Object blogsolvesObject=jsonObject.get("blogsolves");
 
+        jsonMap.put("createdate",dateTime);
+
+        Object blogsolvesObject=jsonObject.get("blogsolves");
         if(blogsolvesObject!=null){
             List<Object> blogsolves=(List)blogsolvesObject;
             for (Object blogSolve:blogsolves){
                 Map<String,Object> blogSolveObj=(Map)blogSolve;
-                blogSolveObj.put("username",username);
+                blogSolveObj.put("username",SecurityContextHolder.getContext().getAuthentication().getName());
                 blogSolveObj.put("datetime",dateTime);
             }
         }else{

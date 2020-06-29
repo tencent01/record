@@ -36,10 +36,10 @@ const request={
         console.log(requestUrl)
         return paramTokenGet(requestUrl,path,token);
     },
-    uploadImg(data){
+    uploadImg(data,token){
         let requestUrl=url.home+url.blog+url.upload+url.img;
         console.log(requestUrl)
-        return httpFormPost(requestUrl,data);
+        return httpFormPost(requestUrl,data,token);
     },
 
     newBlog(blog,token){
@@ -64,6 +64,12 @@ const request={
         let requestUrl=url.home+url.record+url.add;
         console.log(requestUrl)
         return paramTokenGet(requestUrl,path,token);
+    },
+
+    getAllUser(token){
+        let requestUrl=url.home+url.user+url.all;
+        console.log(requestUrl)
+        return httpTokenGet(requestUrl,token);
     },
 }
 

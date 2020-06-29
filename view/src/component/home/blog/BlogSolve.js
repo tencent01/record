@@ -18,7 +18,7 @@ class BlogSolve extends Component {
         editor.customConfig.customUploadImg=(files, insert)=>{
             let data = new FormData();
             data.append("files", files[0]);
-            request.uploadImg(data).then(response=>{
+            request.uploadImg(data,this.props.token).then(response=>{
                 return response.json();
             }).then(data=>{
                 insert(url.home+data.url);

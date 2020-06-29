@@ -1,5 +1,6 @@
 package com.dmatek.record.services.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dmatek.record.bean.User;
 import com.dmatek.record.mapper.UserMapper;
 import com.dmatek.record.services.UserService;
@@ -7,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @Author: admin
@@ -32,5 +35,10 @@ public class UserServiceImpl implements UserService {
     public boolean updateUserPassword(String username, String password) {
         logger.info("updateUserPassword");
         return userMapper.updateUserPassword(username,password);
+    }
+
+    @Override
+    public List<JSONObject> selectAllUser() {
+        return userMapper.selectAllUser();
     }
 }

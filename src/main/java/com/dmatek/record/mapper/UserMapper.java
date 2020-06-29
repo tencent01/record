@@ -1,9 +1,12 @@
 package com.dmatek.record.mapper;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dmatek.record.bean.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+
+import java.util.List;
 
 /**
  * @Author: admin
@@ -13,6 +16,10 @@ import org.apache.ibatis.annotations.Update;
  */
 @Mapper
 public interface UserMapper {
+
+    @Select("select id,name username from user")
+    List<JSONObject> selectAllUser();
+
 
     @Select("select id id,name username,password from user where name=#{username} and password=#{password}")
     User selectUserByUsername(String username,String password);
