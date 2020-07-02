@@ -70,6 +70,7 @@ public class FilterSecurityInterceptor extends AbstractSecurityInterceptor imple
     @Override
     public SecurityMetadataSource obtainSecurityMetadataSource() {
         logger.info("获取安全元数据");
+        System.out.println(getClass().getClassLoader().getResource("").getFile());
         return this.filterInvocationSecurityMetadataSource;
     }
 

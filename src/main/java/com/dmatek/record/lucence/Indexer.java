@@ -47,6 +47,7 @@ public class Indexer {
      */
     public Indexer(String indexDir) {
         try {
+            logger.info("Indexer init");
             directory = FSDirectory.open(Paths.get(indexDir));
             //标准分词器,会自动去掉空格,is a the 等单词
             analyzer=new SmartChineseAnalyzer();
@@ -162,8 +163,10 @@ public class Indexer {
 
     public void indexClear(){
         try {
-            indexWriter.deleteAll();
-            indexWriter.commit();
+            if(indexWriter!=null){
+                indexWriter.deleteAll();
+                indexWriter.commit();
+            }
         }  catch (IOException e) {
             e.printStackTrace();
         }

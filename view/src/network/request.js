@@ -71,6 +71,12 @@ const request={
         console.log(requestUrl)
         return httpTokenGet(requestUrl,token);
     },
+
+    addSolve(solve,token){
+        let requestUrl=url.home+url.blog+url.solve;
+        console.log(requestUrl)
+        return httpTokenPost(requestUrl,solve,token);
+    },
 }
 
 export default request;

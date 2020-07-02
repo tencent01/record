@@ -18,6 +18,7 @@ import request from "../network/request";
 import CreateRecord from "./home/CreateRecord";
 import url from "../network/url";
 import webSocket from "../network/webSocket";
+import AddBlogSolve from "./home/AddBlogSolve";
 
 class Home extends Component {
 
@@ -38,6 +39,7 @@ class Home extends Component {
             showClickMenuClientY:0,
             node:null,
             showCreateRecordView:false,
+            showAddSolveView:false,
             treeData:[
                 {
                     title: 'parent 0',
@@ -141,6 +143,9 @@ class Home extends Component {
         this.onClickNewRecord=this.onClickNewRecord.bind(this);
         this.onAllFileData=this.onAllFileData.bind(this);
         this.onClickShowRecord=this.onClickShowRecord.bind(this);
+        this.onClickAddRecord=this.onClickAddRecord.bind(this);
+        this.onShowAddSolveView=this.onShowAddSolveView.bind(this);
+        this.onClickRefreshRecord=this.onClickRefreshRecord.bind(this);
     }
 
     componentDidMount() {
@@ -176,7 +181,7 @@ class Home extends Component {
             showLogin:value,
         },()=>{
             this.socket=new webSocket({
-                socketUrl:url.ws+url.colon+url.tworoot+url.ip+url.websocket,
+                socketUrl:url.ws+url.colon+url.tworoot+url.ip+url.websocket,//+"?token="+this.state.token,
                 timeout:5000,
                 token:this.state.token,
                 socketMessage:(receive)=>{
@@ -192,7 +197,7 @@ class Home extends Component {
                     console.log('连接建立成功');
                     // 心跳机制 定时向后端发数据
                     this.taskRemindInterval = setInterval(() => {
-                        this.socket.sendMessage({ "msgType": 0
+                        this.socket.sendMessage({ "msgType": "heartbeat"
                         ,token:this.state.token})
                     }, 30000)
                 },
@@ -370,6 +375,30 @@ class Home extends Component {
         }
     }
 
+    onClickAddRecord(){
+        this.setState({
+            showAddSolveView:true
+        })
+    }
+
+    onShowAddSolveView(onShowAddSolveView){
+        this.setState({
+            showAddSolveView:onShowAddSolveView
+        })
+    }
+
+    onClickRefreshRecord(){
+        request.getAllBlog().then(response=>{
+            return response.json();
+        }).then(data=>{
+            console.log(data);
+            console.log(this.dataToTree(data));
+            this.setState({
+                treeData:this.dataToTree(data),
+            })
+        });
+    }
+
     render() {
         const newRecordPathValue=()=>{
             if(this.state.node!=null){
@@ -388,8 +417,10 @@ class Home extends Component {
         let menuAndTree=this.state.showRecordMenu?<MenuAndTree token={this.state.token} onNodeData={this.onNodeData}  treeData={this.state.treeData} onShowMeneClick={this.onShowMeneClick} onRecordViewData={this.onRecordViewData} onShowMenuAndTree={this.onShowMenuAndTree}></MenuAndTree>:"";
         let createBlog=this.state.showCreateRecord?<CreateBlog token={this.state.token} onGetAllFileData={this.onGetAllFileData} onNodeData={this.state.node} onShowCreateRecord={this.onShowCreateRecord}></CreateBlog>:"";
         let showRecordView=this.state.showRecordView?<ShowBlog onShowRecordView={this.onShowRecordView} onShowRecordData={this.state.recordViewData}></ShowBlog>:"";
-        let showClickMenuView=this.state.showClickMenu?<MenuClick onClickShowRecord={this.onClickShowRecord} onClickNewRecord={this.onClickNewRecord} onClickDeleteRecord={this.onClickDeleteRecord} onDeleteRecord={this.onDeleteRecord} onShowCreateBlog={this.onShowCreateBlog} clientX={this.state.showClickMenuClientX} clientY={this.state.showClickMenuClientY}></MenuClick>:"";
+        let showClickMenuView=this.state.showClickMenu?<MenuClick onClickRefreshRecord={this.onClickRefreshRecord} onClickAddRecord={this.onClickAddRecord} onClickShowRecord={this.onClickShowRecord} onClickNewRecord={this.onClickNewRecord} onClickDeleteRecord={this.onClickDeleteRecord} onDeleteRecord={this.onDeleteRecord} onShowCreateBlog={this.onShowCreateBlog} clientX={this.state.showClickMenuClientX} clientY={this.state.showClickMenuClientY}></MenuClick>:"";
         let showCreateRecordView=this.state.showCreateRecordView?<CreateRecord token={this.state.token} onAllFileData={this.onAllFileData} newRecordPathValue={newRecordPathValue()} onClickNewRecord={this.onClickNewRecord}></CreateRecord>:"";
+
+        let showAddSolveView=this.state.node!=null?(this.state.showAddSolveView?<AddBlogSolve nodeKey={this.state.node.key} token={this.state.token} onShowAddSolveView={this.onShowAddSolveView} onShowRecordData={this.state.recordViewData}></AddBlogSolve>:""):"";
         return (
             <div>
                 <Button type="primary" shape="circle" size="large"  onClick={e => this.onClick(e)}  className="btn btn-primary float-right mr-5 mt-3" >
@@ -398,6 +429,7 @@ class Home extends Component {
                 {menuAndTree}
                 {showRecordView}
                 {createBlog}
+                {showAddSolveView}
                 {loginView}
                 {updatePassword}
                 {/*<CkEditorDome></CkEditorDome>*/}

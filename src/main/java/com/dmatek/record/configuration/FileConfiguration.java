@@ -35,10 +35,10 @@ public class FileConfiguration {
         return fileComponent.fileToBlogNodeList();
     }
 
-    @Bean("JsTreeList")
+    /*@Bean("JsTreeList")
     public List<JSTreeNode> fileToJsTreeNodeList(){
         return fileComponent.fileToJsTreeNodeList();
-    }
+    }*/
 
 
 }

@@ -114,7 +114,7 @@ font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica',Arial
             <div th:if="${start.count ne 1}">
                 <hr  style="margin-top:20px;margin-bottom:20px;border: 0;border-top: 1px solid rgba(0,0,0,0.1);"/>
             </div>
-            <div id="${start.count}" style="">
+            <div th:id="${start.count}" style="">
                 <div style="height: 25px">
                     <div style="float: left;width: 10px;height: 100%"></div>
                     <span style="font-size:20px;font-weight: 900;color: #FF2400  !important" th:text="${blogsolve['username']}"></span>

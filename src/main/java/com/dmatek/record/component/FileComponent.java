@@ -27,6 +27,8 @@ public class FileComponent {
     private final static Logger logger= LoggerFactory.getLogger(FileComponent.class);
 
     public BlogNode fileToBlogNode(){
+
+//        String rootPath="file:/home/money/blog/";
         File file=new File(getClass().getClassLoader().getResource("static/blog").getFile());
         return fileToBlogNode(file);
     }
@@ -43,6 +45,7 @@ public class FileComponent {
             blogNode.setName(fileName);
         }
         String path=file.getPath();
+//        String rootPath="/home/money/blog/";
         String rootPath=getClass().getClassLoader().getResource("static/blog").getFile().replace("/","\\");
         blogNode.setKey(("\\"+path).replace(rootPath+"\\",""));
         if(file.isDirectory()){
@@ -101,6 +104,8 @@ public class FileComponent {
     private JSTreeNode fileToJSTreeNode(File file){
         JSTreeNode jsTreeNode=new JSTreeNode();
         String path=file.getPath();
+
+//        String rootPath="/home/money/blog/";
         String rootPath=getClass().getClassLoader().getResource("static/blog").getFile().replace("/","\\");
         logger.info(path);
         logger.info(rootPath);
@@ -128,6 +133,9 @@ public class FileComponent {
         }
         return jsTreeNodes;
     }
+
+
+
 
 
 

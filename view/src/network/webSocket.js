@@ -10,7 +10,7 @@ export default class webSocket{
     connection=()=>{
         let {socketUrl,timeout=0}=this.param;
         console.log('WebSocket');
-        this.socket=new WebSocket(socketUrl);
+        this.socket=new WebSocket(socketUrl,[this.param.token]);
         this.socket.onopen=this.onopen;
         this.socket.onmessage=this.onmessage;
         this.socket.onclose=this.onclose;
@@ -40,7 +40,7 @@ export default class webSocket{
         let {socketMessage}=this.param;
         socketMessage&&socketMessage(msg);
         // 打印出后端推得数据
-        console.log(msg);
+        // console.log(msg);
     }
 
     // 关闭连接触发

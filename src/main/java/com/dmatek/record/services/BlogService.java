@@ -1,5 +1,6 @@
 package com.dmatek.record.services;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dmatek.record.bean.BlogNode;
 
 import java.util.List;
@@ -13,4 +14,5 @@ import java.util.List;
 public interface BlogService {
 
     List<BlogNode> allFile();
+    void addSolve(JSONObject solve);
 }

@@ -6,6 +6,7 @@ import com.dmatek.record.bean.BlogNode;
 import com.dmatek.record.lucence.Indexer;
 import com.dmatek.record.services.BlogService;
 import com.dmatek.record.services.ThymeleafService;
+import com.dmatek.record.websocket.WebSocketServer;
 import org.apache.poi.POIXMLDocument;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -61,13 +62,14 @@ public class BlogController {
     public JSONObject newBlog(@RequestBody  JSONObject jsonObject){
         String blogName=(String)jsonObject.get("blogname");
         Object helpusernames=jsonObject.get("helpusername");
-
+        List<String> helpUsers=new ArrayList();
         if(helpusernames!=null){
             String helpuser="";
             List<Object> helpusernameList=(List)helpusernames;
             for (int i = 0; i < helpusernameList.size(); i++) {
                 String userTemp=(String)helpusernameList.get(i);
                 String[] userTempArr=userTemp.split("_");
+                helpUsers.add(userTempArr[0]);
                 if(i==0){
                     helpuser+=userTempArr[0];
                 }else{
@@ -96,6 +98,7 @@ public class BlogController {
             List<Object> blogsolves=(List)blogsolvesObject;
             for (Object blogSolve:blogsolves){
                 Map<String,Object> blogSolveObj=(Map)blogSolve;
+                logger.info(blogSolveObj.get("blogsolve").toString());
                 blogSolveObj.put("username",SecurityContextHolder.getContext().getAuthentication().getName());
                 blogSolveObj.put("datetime",dateTime);
             }
@@ -120,6 +123,12 @@ public class BlogController {
         JSONObject json=new JSONObject();
         json.put("codeCheck",true);
         json.put("msg",blogService.allFile());
+        for(String n:helpUsers){
+            JSONObject sendJson=new JSONObject();
+            sendJson.put("msgType","pushNewLog");
+            sendJson.put("data",file.getPath().replace(getClass().getClassLoader().getResource("static/blog").getFile(),""));
+            WebSocketServer.sendMsg(n,sendJson.toJSONString());
+        }
         return json;
     }
 
@@ -193,6 +202,20 @@ public class BlogController {
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("url","aaa");
         return jsonObject;
+    }
+
+
+    @CrossOrigin
+    @RequestMapping("solve")
+    public String addBlog(@RequestBody JSONObject solve){
+        Calendar calendar= Calendar.getInstance();
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateTime=simpleDateFormat.format(calendar.getTime());
+        String createName=SecurityContextHolder.getContext().getAuthentication().getName();
+        solve.put("createdate",dateTime);
+        solve.put("createname",createName);
+        blogService.addSolve(solve);
+        return "../static/blog/"+solve.getString("key");
     }
 
 

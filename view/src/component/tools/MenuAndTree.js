@@ -142,6 +142,23 @@ class MenuAndTree extends Component {
         const onRightClick = (o) => {
             let node=o.node;
             isRightTree=true;
+            console.log(node)
+            if(node.isLeaf){
+                request.readFile({keys:node.key},this.props.token).then(response=>{
+                    console.log(response)
+                    if(response.status==200){
+                        return response.text();
+                    }else{
+                        return "不支持此格式"
+                    }
+                    // return response.text();
+                }).then(data=>{
+                    this.props.onRecordViewData(false,data)
+                    return data;
+                })
+            }else{
+                console.log("dir")
+            }
             // this.props.onShowMeneClick(node,true,o.event.clientX,o.event.clientY);
             this.props.onNodeData(node);
         };

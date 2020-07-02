@@ -6,6 +6,10 @@
     height: 500px !important;/*!important是重点，因为原div是行内样式设置的高度300px*/
 }
 
+.add_blog_solve .w-e-text-container{
+    height: 300px !important;/*!important是重点，因为原div是行内样式设置的高度300px*/
+}
+
 .div_none{
     -webkit-user-select:none;
 

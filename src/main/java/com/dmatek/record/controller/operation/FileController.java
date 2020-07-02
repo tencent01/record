@@ -38,12 +38,12 @@ public class FileController {
 
 
 
-    @Autowired
-    private BlogNode blogNode;
+//    @Autowired
+//    private BlogNode blogNode;
 
 
 
-    @Autowired
+    /*@Autowired
     @Qualifier("blogList")
     private List<BlogNode> blogList;
 
@@ -56,7 +56,7 @@ public class FileController {
     public List<JSTreeNode> getDir(){
 
         return jsTreeNodes;
-    }
+    }*/
 
     @CrossOrigin
     @RequestMapping("all")

@@ -350,7 +350,7 @@ class CreateBlog extends Component {
                                     <Form.Item
                                         wrapperCol={{offset: 10}}>
                                         <Button type="primary" htmlType="submit"  onClick={onCheck}>
-                                            提交记录
+                                            提交
                                         </Button>
                                     </Form.Item>
                                 </Form>
