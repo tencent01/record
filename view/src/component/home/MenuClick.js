@@ -35,6 +35,9 @@ class MenuClick extends Component {
         const onClickRefreshRecord=()=>{
             this.props.onClickRefreshRecord();
         }
+        const onClickAccount=()=>{
+            this.props.onClickAccount(true);
+        }
         return (
             <div  style={{transform: `translateX(${this.props.clientX}px)translateY(${this.props.clientY}px)`,position:'absolute',width:'200px',border:'1px #ccc solid',padding:'2px 0',backgroundColor:'white',boxShadow:'5px 5px 5px #ccc'}}>
 
@@ -47,6 +50,7 @@ class MenuClick extends Component {
                 <div className="menu_click_item" onClick={onClickShowRecord} style={{height:'25px',margin:'4px 0',padding:'0 10px',cursor:'pointer'}}>查看项目</div>
                 <div className="menu_click_item" onClick={onClickDeleteRecord} style={{height:'25px',margin:'4px 0',padding:'0 10px',cursor:'pointer'}}>删除项目</div>
                 <div className="menu_click_item" onClick={onClickDelete} style={{height:'25px',margin:'4px 0',padding:'0 10px',cursor:'pointer'}}>删除分类</div>
+                <div className="menu_click_item" onClick={onClickAccount}  style={{height:'25px',margin:'4px 0',padding:'0 10px',cursor:'pointer'}}>账号管理</div>
             </div>
         );
     }

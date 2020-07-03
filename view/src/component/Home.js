@@ -19,6 +19,7 @@ import CreateRecord from "./home/CreateRecord";
 import url from "../network/url";
 import webSocket from "../network/webSocket";
 import AddBlogSolve from "./home/AddBlogSolve";
+import AccountManager from "./login/AccountManager";
 
 class Home extends Component {
 
@@ -40,6 +41,7 @@ class Home extends Component {
             node:null,
             showCreateRecordView:false,
             showAddSolveView:false,
+            showAccountManagerView:false,
             treeData:[
                 {
                     title: 'parent 0',
@@ -146,6 +148,7 @@ class Home extends Component {
         this.onClickAddRecord=this.onClickAddRecord.bind(this);
         this.onShowAddSolveView=this.onShowAddSolveView.bind(this);
         this.onClickRefreshRecord=this.onClickRefreshRecord.bind(this);
+        this.onClickAccount=this.onClickAccount.bind(this);
     }
 
     componentDidMount() {
@@ -399,6 +402,12 @@ class Home extends Component {
         });
     }
 
+    onClickAccount(value){
+        this.setState({
+            showAccountManagerView:value
+        })
+    }
+
     render() {
         const newRecordPathValue=()=>{
             if(this.state.node!=null){
@@ -417,16 +426,19 @@ class Home extends Component {
         let menuAndTree=this.state.showRecordMenu?<MenuAndTree token={this.state.token} onNodeData={this.onNodeData}  treeData={this.state.treeData} onShowMeneClick={this.onShowMeneClick} onRecordViewData={this.onRecordViewData} onShowMenuAndTree={this.onShowMenuAndTree}></MenuAndTree>:"";
         let createBlog=this.state.showCreateRecord?<CreateBlog token={this.state.token} onGetAllFileData={this.onGetAllFileData} onNodeData={this.state.node} onShowCreateRecord={this.onShowCreateRecord}></CreateBlog>:"";
         let showRecordView=this.state.showRecordView?<ShowBlog onShowRecordView={this.onShowRecordView} onShowRecordData={this.state.recordViewData}></ShowBlog>:"";
-        let showClickMenuView=this.state.showClickMenu?<MenuClick onClickRefreshRecord={this.onClickRefreshRecord} onClickAddRecord={this.onClickAddRecord} onClickShowRecord={this.onClickShowRecord} onClickNewRecord={this.onClickNewRecord} onClickDeleteRecord={this.onClickDeleteRecord} onDeleteRecord={this.onDeleteRecord} onShowCreateBlog={this.onShowCreateBlog} clientX={this.state.showClickMenuClientX} clientY={this.state.showClickMenuClientY}></MenuClick>:"";
+        let showClickMenuView=this.state.showClickMenu?<MenuClick onClickAccount={this.onClickAccount} onClickRefreshRecord={this.onClickRefreshRecord} onClickAddRecord={this.onClickAddRecord} onClickShowRecord={this.onClickShowRecord} onClickNewRecord={this.onClickNewRecord} onClickDeleteRecord={this.onClickDeleteRecord} onDeleteRecord={this.onDeleteRecord} onShowCreateBlog={this.onShowCreateBlog} clientX={this.state.showClickMenuClientX} clientY={this.state.showClickMenuClientY}></MenuClick>:"";
         let showCreateRecordView=this.state.showCreateRecordView?<CreateRecord token={this.state.token} onAllFileData={this.onAllFileData} newRecordPathValue={newRecordPathValue()} onClickNewRecord={this.onClickNewRecord}></CreateRecord>:"";
 
         let showAddSolveView=this.state.node!=null?(this.state.showAddSolveView?<AddBlogSolve nodeKey={this.state.node.key} token={this.state.token} onShowAddSolveView={this.onShowAddSolveView} onShowRecordData={this.state.recordViewData}></AddBlogSolve>:""):"";
+
+        let showAccountManagerView=this.state.showAccountManagerView?<AccountManager showAccountManager={this.onClickAccount}></AccountManager>:"";
         return (
             <div>
                 <Button type="primary" shape="circle" size="large"  onClick={e => this.onClick(e)}  className="btn btn-primary float-right mr-5 mt-3" >
                     登录
                 </Button>
                 {menuAndTree}
+                {showAccountManagerView}
                 {showRecordView}
                 {createBlog}
                 {showAddSolveView}
@@ -436,6 +448,7 @@ class Home extends Component {
                 {/*<MenuTree></MenuTree>*/}
                 {showClickMenuView}
                 {showCreateRecordView}
+
             </div>
         );
     }
