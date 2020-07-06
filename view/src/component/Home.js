@@ -188,6 +188,16 @@ class Home extends Component {
                 timeout:5000,
                 token:this.state.token,
                 socketMessage:(receive)=>{
+                    let data=JSON.parse(receive.data);
+                    console.log()
+                    switch (data.msgType) {
+                        case "pushNewLog":
+                            this.onClickRefreshRecord();
+                            console.log(data.data)
+                            break;
+                        default:
+                            break;
+                    }
                     console.log(receive);
                 },
                 socketClose:(msg)=>{

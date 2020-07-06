@@ -13,6 +13,8 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,7 +111,7 @@ public class BlogController {
 
         String filePath=getClass().getClassLoader().getResource("static/blog").getFile();
         Object httpPath=jsonObject.get("path");
-        if(httpPath!=null){
+        if(httpPath!=null&&!"".equals(httpPath)){
             filePath=filePath+"/"+httpPath.toString();
         }
         File file=new File(filePath+"/"+blogName+".html");
@@ -126,7 +128,21 @@ public class BlogController {
         for(String n:helpUsers){
             JSONObject sendJson=new JSONObject();
             sendJson.put("msgType","pushNewLog");
-            sendJson.put("data",file.getPath().replace(getClass().getClassLoader().getResource("static/blog").getFile(),""));
+            System.out.println(filePath);
+            String classPathBlog=getClass().getClassLoader().getResource("static/blog").getFile();
+//            classPathBlog=classPathBlog.substring(1,classPathBlog.length()).replace("/","\\");
+//            System.out.println(classPathBlog);
+            sendJson.put("key",filePath.replace(classPathBlog+"/",""));
+//            File webFile=new File(file.getPath().replace(getClass().getClassLoader().getResource("static/blog").getFile(),""))
+//            Document document=new Document(file.getPath());
+            /*try {
+
+                Document document = Jsoup.parse(file,"UTF-8");
+                sendJson.put("data",document.html());
+            } catch (IOException e) {
+                logger.error(e.toString());
+            }*/
+
             WebSocketServer.sendMsg(n,sendJson.toJSONString());
         }
         return json;
