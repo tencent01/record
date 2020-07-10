@@ -25,6 +25,7 @@ class AddBlogSolve extends Component {
         window.ontouchmove = e => this.onTouchMove(e);
         this.onHandleClick=this.onHandleClick.bind(this);
         this.onBlogSolve=this.onBlogSolve.bind(this);
+        this.scrollToBottom=this.scrollToBottom.bind(this);
     }
 
 
@@ -90,6 +91,32 @@ class AddBlogSolve extends Component {
         })
     }
 
+    scrollToBottom() {
+        if (this.messagesEnd) {
+            request.readFile({keys:this.props.nodeKey},this.props.token).then(response=>{
+                console.log(response)
+                if(response.status==200){
+                    return response.text();
+                }else{
+                    return "不支持此格式"
+                }
+                // return response.text();
+            }).then(data=>{
+                if(data){
+                    this.messagesEnd.innerHTML=data;
+
+                    const scrollHeight = this.messagesEnd.scrollHeight;//里面div的实际高度  2000px
+                    const height = this.messagesEnd.clientHeight;  //网页可见高度  200px
+                    const maxScrollTop = scrollHeight - height;
+                    this.messagesEnd.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
+                }
+
+                return data;
+            })
+            //如果实际高度大于可见高度，说明是有滚动条的，则直接把网页被卷去的高度设置为两个div的高度差，实际效果就是滚动到底部了。
+        }
+    }
+
     render() {
         const cursorStyle = {
             cursor:this.state.cursorStyle ? 'pointer' : 'default'
@@ -97,19 +124,29 @@ class AddBlogSolve extends Component {
         const onCheck = async () => {
             try {
                 console.log(this.state.html)
-                request.addSolve({solve:this.state.html,key:this.props.nodeKey},this.props.token).then(response=>{
-                    console.log(response)
-                    return response.text();
-                }).then(
-                    data=>{
-                        this.refs.showdiv.innerHTML=data;
-                        console.log(data)
-                    }
-                )
+                if(this.state.html){
+                    request.addSolve({solve:this.state.html,key:this.props.nodeKey},this.props.token).then(response=>{
+                        console.log(response)
+                        return response.text();
+                    }).then(
+                        data=>{
+                            this.messagesEnd.innerHTML=data;
+                            const scrollHeight = this.messagesEnd.scrollHeight;//里面div的实际高度  2000px
+                            const height = this.messagesEnd.clientHeight;  //网页可见高度  200px
+                            const maxScrollTop = scrollHeight - height;
+                            this.messagesEnd.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
+                            console.log(data)
+                        }
+                    )
+                }else{
+                    console.log("提交失败")
+                }
+
             } catch (errorInfo) {
                 console.log('Failed:', errorInfo);
             }
         };
+        let m=this.props.message?(this.scrollToBottom()):"";
         return (
             <div style={{width:'1px',height:'0px'} } className="float-left">
                 <div
@@ -130,7 +167,7 @@ class AddBlogSolve extends Component {
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div ref="showdiv" style={{float:'left',height:window.innerHeight/2-60,overflow:'auto'}} className="" dangerouslySetInnerHTML={{__html:this.props.onShowRecordData}}>
+                        <div ref="showdiv" ref={(el) => { this.messagesEnd = el; }} style={{float:'left',height:window.innerHeight/2-60,overflow:'auto'}} className="" dangerouslySetInnerHTML={{__html:this.props.onShowRecordData}}>
 
                         </div>
                         <div style={{float:'left',height:window.innerHeight/2-60,overflow:'auto',width:'100%'}} className="">

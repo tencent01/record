@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.dmatek.record.bean.User;
 import com.dmatek.record.config.SecurityConfig;
 import com.dmatek.record.jsonwebtoken.JwtUtil;
+import com.dmatek.record.lucence.Indexer;
 import com.dmatek.record.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +38,9 @@ public class LoginController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private Indexer indexer;
+
     @CrossOrigin
     @PostMapping("login")
     public String login(@RequestBody User user){
@@ -51,6 +55,7 @@ public class LoginController {
             UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken=new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword());
             Authentication authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
             SecurityContextHolder.getContext().setAuthentication(authentication);
+            indexer.searchName(user.getUsername());
             json.put("success", true);
             json.put("code", 1);
             //json.put("result", user1);

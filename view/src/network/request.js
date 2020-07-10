@@ -77,6 +77,12 @@ const request={
         console.log(requestUrl)
         return httpTokenPost(requestUrl,solve,token);
     },
+    recordSearch(search){
+        let requestUrl=url.home+url.record+url.search;
+        console.log(requestUrl)
+        return paramGet(requestUrl,search);
+
+    }
 }
 
 export default request;

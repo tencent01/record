@@ -25,7 +25,8 @@ class AddSolve extends Component {
         }
         // 使用 onchange 函数监听内容的变化，并实时更新到 state 中
         editor.customConfig.onchange = html => {
-            this.props.onBlogSolve(html,this.props.fieldName);
+            console.log(html)
+            this.props.onBlogSolve(html);
             this.setState({
                 editorContent: html
             })

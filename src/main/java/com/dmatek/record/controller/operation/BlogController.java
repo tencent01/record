@@ -230,7 +230,16 @@ public class BlogController {
         String createName=SecurityContextHolder.getContext().getAuthentication().getName();
         solve.put("createdate",dateTime);
         solve.put("createname",createName);
-        blogService.addSolve(solve);
+        logger.info(solve.getString("solve"));
+        List<String> users=blogService.addSolve(solve);
+        if(users!=null){
+            for(String n:users){
+                JSONObject sendJson=new JSONObject();
+                sendJson.put("msgType","message");
+                sendJson.put("key",solve.getString("key"));
+                WebSocketServer.sendMsg(n,sendJson.toJSONString());
+            }
+        }
         return "../static/blog/"+solve.getString("key");
     }
 

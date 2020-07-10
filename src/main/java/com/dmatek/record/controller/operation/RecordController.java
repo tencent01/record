@@ -1,5 +1,6 @@
 package com.dmatek.record.controller.operation;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dmatek.record.bean.BlogNode;
 import com.dmatek.record.lucence.Indexer;
 import com.dmatek.record.lucence.LucenceComponent;
@@ -53,9 +54,12 @@ public class RecordController {
 
     @CrossOrigin
     @RequestMapping("search")
-    public String search(String search){
-        indexer.search(search);
-        return "AAAAAAA";
+    public List<JSONObject> search(String search,int pageNow,int pageSize ){
+        System.out.println(search);
+        System.out.println(pageNow);
+        System.out.println(pageSize);
+        List<JSONObject> jsonObjects=indexer.search(search,pageNow,pageSize);
+        return jsonObjects;
     }
 
 }

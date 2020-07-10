@@ -27,6 +27,7 @@ const url={
     record:"/record",
     add:"/add",
     solve:"/solve",
+    search:"/search",
 
 }
 

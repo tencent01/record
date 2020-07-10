@@ -14,5 +14,5 @@ import java.util.List;
 public interface BlogService {
 
     List<BlogNode> allFile();
-    void addSolve(JSONObject solve);
+    List<String> addSolve(JSONObject solve);
 }

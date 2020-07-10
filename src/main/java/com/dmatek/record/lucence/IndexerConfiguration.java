@@ -16,10 +16,17 @@ public class IndexerConfiguration {
 
 
     private final static Logger logger= LoggerFactory.getLogger(IndexerConfiguration.class);
-
+    public IndexerConfiguration(){
+//        String dir=getClass().getClassLoader().getResource("static/lucence").getFile();
+//        String indexDir=dir.substring(1,dir.length()-1);
+//        logger.info(indexDir);
+    }
 
     @Bean
     public Indexer getIndexer(){
+
+        String dir=this.getClass().getClassLoader().getResource("lucence").getFile();
+        String indexDir=dir.substring(1,dir.length());
         return new Indexer("D:\\lucene");
     }
 

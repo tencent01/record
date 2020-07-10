@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public void addSolve(JSONObject solve){
+    public List<String> addSolve(JSONObject solve){
         String path=solve.getString("key");
 
         String rootPath=getClass().getClassLoader().getResource("static/blog").getFile().replace("/","\\");
@@ -52,7 +53,13 @@ public class BlogServiceImpl implements BlogService {
             System.out.println(elementUser.text());
             System.out.println(elementHelpUser.text());
             String createName=solve.getString("createname");
+            List<String> users=new ArrayList<>();
+            for(String helpUser:elementHelpUser.text().split(",")){
+                users.add(helpUser);
+            }
+            users.add(elementUser.text());
             if(createName!=null&&(createName.equalsIgnoreCase(elementUser.text())|| Arrays.asList(elementHelpUser.text().split(",")).contains(createName))){
+                users.remove(createName);
                 if(element.children().size()==0){
                     element.append(
                             "<div>\n" +
@@ -95,9 +102,10 @@ public class BlogServiceImpl implements BlogService {
                 osw.close();
             }
 
-
+            return users;
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 }
