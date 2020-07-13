@@ -55,12 +55,13 @@ public class LoginController {
             UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken=new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword());
             Authentication authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            indexer.searchName(user.getUsername());
             json.put("success", true);
             json.put("code", 1);
             //json.put("result", user1);
             json.put("message", "登陆成功");
             json.put(JwtUtil.AUTHORIZATION,token);
+            List<JSONObject> records=indexer.searchName(user.getUsername());
+            json.put("recording", records);
         }else{
             json.put("success", false);
             json.put("code", -1);
@@ -72,6 +73,7 @@ public class LoginController {
     @CrossOrigin
     @PostMapping("update/password")
     public int updatePassword(@RequestBody JSONObject jsonObject){
+        logger.info(jsonObject.toJSONString());
         String username=jsonObject.getString("username");
         String oldpassword=jsonObject.getString("oldpassword");
         String password=jsonObject.getString("password");
@@ -82,11 +84,11 @@ public class LoginController {
 
         if(username!=null&&oldpassword!=null&&password!=null){
             logger.info("not null");
-            User user=userService.selectUserByUsername(username,oldpassword);
+            User user=userService.selectUserByUsername(username,DigestUtils.md5DigestAsHex(oldpassword.getBytes()));
             logger.info("not null");
             if(user!=null){
                 logger.info(user.toString());
-                boolean ok=userService.updateUserPassword(user.getUsername(),password);
+                boolean ok=userService.updateUserPassword(user.getUsername(),DigestUtils.md5DigestAsHex(password.getBytes()));
                 logger.info(ok+"");
                 return 0;
             }
@@ -120,6 +122,35 @@ public class LoginController {
     public List<JSONObject> getAllUser(){
         logger.info(TAG+"all");
         return userService.selectAllUser();
+    }
+
+    @CrossOrigin
+    @RequestMapping("add")
+    public JSONObject addUser(@RequestBody  JSONObject jsonObject){
+        String username=jsonObject.getString("username");
+        String oldpassword=jsonObject.getString("oldpassword");
+        String password=jsonObject.getString("password");
+        logger.info(TAG+"add");
+        logger.info(jsonObject.toJSONString());
+        User user=new User();
+        user.setUsername(username);
+        user.setPassword(DigestUtils.md5DigestAsHex(password.getBytes()));
+        int role=2;
+        if("admin".equals(jsonObject.getString("gender"))){
+            role=1;
+        }
+        JSONObject result=new JSONObject();
+        if(userService.addUser(user,role)){
+            result.put("success", true);
+            result.put("code", 1);
+            result.put("message", "添加用户成功");
+        }else{
+
+            result.put("success", false);
+            result.put("code", -1);
+            result.put("message", "添加用户成功失败");
+        }
+        return result;
     }
 
 }

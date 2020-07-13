@@ -82,6 +82,12 @@ const request={
         console.log(requestUrl)
         return paramGet(requestUrl,search);
 
+    },
+    addUser(user,token){
+        let requestUrl=url.home+url.user+url.add;
+        console.log(requestUrl)
+        return httpTokenPost(requestUrl,user,token);
+
     }
 }
 

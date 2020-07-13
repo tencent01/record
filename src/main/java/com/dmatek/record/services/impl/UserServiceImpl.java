@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
 import java.util.List;
 
@@ -40,5 +41,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<JSONObject> selectAllUser() {
         return userMapper.selectAllUser();
+    }
+
+    @Override
+    public boolean addUser(User user,int role) {
+        int addUserResult=userMapper.addUser(user);
+        int addRoleResult=userMapper.addUserRole(user.getId(),role);
+        System.out.println(addUserResult);
+        System.out.println(addRoleResult);
+        if(addRoleResult==1){
+            return true;
+        }
+        return false;
     }
 }

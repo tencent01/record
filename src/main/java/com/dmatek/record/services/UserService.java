@@ -20,4 +20,7 @@ public interface UserService {
 
     List<JSONObject> selectAllUser();
 
+
+    boolean addUser(User user,int role);
+
 }

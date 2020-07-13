@@ -12,6 +12,7 @@ class Login extends Component {
         this.state={
             translateX: screenWidth/2-160,
             translateY: 150,
+            loginUserName: null
         };
         this.moving = false;
         this.lastX = null;
@@ -23,7 +24,8 @@ class Login extends Component {
         this.onHandleClick=this.onHandleClick.bind(this);
         this.onHandleShowCreateAccount=this.onHandleShowCreateAccount.bind(this);
         this.onSubmittClick=this.onSubmittClick.bind(this);
-        this.onChangePassword=this.onChangePassword.bind(this);;
+        this.onChangePassword=this.onChangePassword.bind(this);
+        // this.onHandleClickHandler=this.onHandleClickHandler(this);
         this.onHandleShowUpdatePassword=this.onHandleShowUpdatePassword.bind(this);
     }
 
@@ -84,6 +86,11 @@ class Login extends Component {
         this.props.showLogin(false,data);
     }
 
+    onHandleClickHandler=()=>{
+        console.log("onHandleClickHandler")
+        this.props.showLoginHandler(false);
+    }
+
     onHandleShowCreateAccount(){
         this.props.showCreateAccount(true,true);
     }
@@ -122,7 +129,8 @@ class Login extends Component {
                     message: "登陆成功"
                     success: true*/
                     if(data.code==1&&data.message=="登陆成功"&&data.success){
-                        this.onHandleClick(data.Authorization);
+                        data.loginName=values.username;
+                        this.onHandleClick(data);
                     }
                     console.log(data);
                 }
@@ -144,7 +152,7 @@ class Login extends Component {
                             className="pb-5"
                             style={{cursor:cursorStyle.cursor, width: '100%', height: 20, backgroundColor: 'white' }}
                         >
-                            <button onClick={this.onHandleClick} type="button" className="close" aria-label="关闭">
+                            <button onClick={this.onHandleClickHandler} type="button" className="close" aria-label="关闭">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>

@@ -20,4 +20,6 @@ public interface RoleMapper {
 
     @Select("select id,name from role where id in (select role_id from role_permssion where permission_id=#{permission_id})")
     List<Role> getRolesByPermssionId(long permission_id);
+
+
 }

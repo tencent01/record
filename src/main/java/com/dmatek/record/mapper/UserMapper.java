@@ -2,9 +2,7 @@ package com.dmatek.record.mapper;
 
 import com.alibaba.fastjson.JSONObject;
 import com.dmatek.record.bean.User;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -29,6 +27,15 @@ public interface UserMapper {
 
     @Update("update user set password=#{password} where name=#{username}")
     boolean updateUserPassword(String username,String password);
+
+
+    @Insert("insert into user (name,password) value (#{username},#{password})")
+    @Options(useGeneratedKeys = true, keyProperty = "id",keyColumn="id")
+    int addUser(User user);
+
+    @Insert("insert into user_role (user_id,role_id) value (#{user_id},#{role_id})")
+    int addUserRole (int user_id,int role_id);
+
 
 
 }

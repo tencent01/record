@@ -48,6 +48,7 @@ class Home extends Component {
             showAccountManagerView:false,
             blogSloveMessage:false,
             showBlogSearchView:false,
+            loginValueBtn:'登录',
             treeData:[
                 {
                     title: 'parent 0',
@@ -157,6 +158,7 @@ class Home extends Component {
         this.onClickAccount=this.onClickAccount.bind(this);
         this.openNotification=this.openNotification.bind(this);
         this.showBlogSearch=this.showBlogSearch.bind(this);
+        this.showLoginHandler=this.showLoginHandler.bind(this);
     }
 
     componentDidMount() {
@@ -179,17 +181,46 @@ class Home extends Component {
     }
 
     onClick(e){
-        if(!this.state.showLogin&&!this.state.showUpdatePassword){
+        console.log(this.state.showLogin)
+        if(this.state.loginValueBtn=='登录'){
+            if(!this.state.showLogin&&!this.state.showUpdatePassword){
+                this.setState({
+                    showLogin:true,
+                })
+            }
+        }else{
             this.setState({
-                showLogin:true,
+                showLogin:false,
+                token:null,
+                showCreateAccount:false,
+                showUpdatePassword:false,
+                showRecordMenu:true,
+                showCreateRecord:false,
+                showRecordView:false,
+                recordViewData:null,
+
+                showClickMenu:false,
+                showClickMenuClientX:0,
+                showClickMenuClientY:0,
+                node:null,
+                showCreateRecordView:false,
+                showAddSolveView:false,
+                showAccountManagerView:false,
+                blogSloveMessage:false,
+                showBlogSearchView:false,
+                loginValueBtn:'登录',
             })
         }
+
     }
 
-    showLogin(value,token){
+    showLogin(value,data){
+        console.log(data)
+
         this.setState({
-            token:token,
+            token:data.Authorization,
             showLogin:value,
+            loginValueBtn:data.loginName
         },()=>{
             this.socket=new webSocket({
                 socketUrl:url.ws+url.colon+url.tworoot+url.ip+url.websocket,//+"?token="+this.state.token,
@@ -294,6 +325,33 @@ class Home extends Component {
             } catch (e) {
                 // 捕获异常，防止js error
                 // donothing
+            }
+
+            let recording=data.recording;
+            for(let i=0;i<recording.length;i++){
+                let record=recording[i];
+                let recordMsg={
+                    message: '需要你处理的项目',
+                    description: record.filePath,
+                    key:"recording"+record.filePath,
+                    onClick: () => {
+                        request.readFile({keys:record.filePath},this.state.token).then(response=>{
+                            console.log(response)
+                            if(response.status==200){
+                                return response.text();
+                            }else{
+                                return "不支持此格式"
+                            }
+                            // return response.text();
+                        }).then(text=>{
+                            this.onRecordViewData(true,text)
+                            notification.close("recording"+record.filePath);
+                            return text;
+                        })
+                    },
+                    icon: <SmileOutlined style={{ color: '#108ee9' }} />,
+                };
+                this.openNotification(recordMsg);
             }
         })
     }
@@ -501,6 +559,14 @@ class Home extends Component {
         })
     }
 
+    showLoginHandler(value){
+        console.log("showLoginHandler")
+        console.log(value)
+        this.setState({
+            showLogin:value
+        });
+    }
+
     render() {
         const newRecordPathValue=()=>{
             if(this.state.node!=null){
@@ -514,7 +580,7 @@ class Home extends Component {
             }
             return "";
         }
-        let loginView=this.state.showLogin?<Login showUpdatePassword={this.showUpdatePassword} showLogin={this.showLogin}  className="btn btn-primary float-right mr-5 mt-3"></Login>:"";
+        let loginView=this.state.showLogin?<Login showUpdatePassword={this.showUpdatePassword} showLogin={this.showLogin} showLoginHandler={this.showLoginHandler}  className="btn btn-primary float-right mr-5 mt-3"></Login>:"";
         let updatePassword=this.state.showUpdatePassword?<UpdatePassword showUpdatePassword={this.showUpdatePassword}></UpdatePassword>:"";
         let menuAndTree=this.state.showRecordMenu?<MenuAndTree token={this.state.token} onNodeData={this.onNodeData}  treeData={this.state.treeData} onShowMeneClick={this.onShowMeneClick} onRecordViewData={this.onRecordViewData} onShowMenuAndTree={this.onShowMenuAndTree}></MenuAndTree>:"";
         let createBlog=this.state.showCreateRecord?<CreateBlog token={this.state.token} onGetAllFileData={this.onGetAllFileData} onNodeData={this.state.node} onShowCreateRecord={this.onShowCreateRecord}></CreateBlog>:"";
@@ -524,13 +590,13 @@ class Home extends Component {
 
         let showAddSolveView=this.state.node!=null?(this.state.showAddSolveView?<AddBlogSolve message={this.state.blogSloveMessage} nodeKey={this.state.node.key} token={this.state.token} onShowAddSolveView={this.onShowAddSolveView} onShowRecordData={this.state.recordViewData}></AddBlogSolve>:""):"";
 
-        let showAccountManagerView=this.state.showAccountManagerView?<AccountManager showAccountManager={this.onClickAccount}></AccountManager>:"";
+        let showAccountManagerView=this.state.showAccountManagerView?<AccountManager token={this.state.token} showAccountManager={this.onClickAccount}></AccountManager>:"";
 
         let showBlogSearch=this.state.showBlogSearchView?<BlogSearch token={this.state.token}  onRecordViewData={this.onRecordViewData} showBlogSearch={this.showBlogSearch}></BlogSearch>:"";
         return (
             <div>
                 <Button type="primary" shape="circle" size="large"  onClick={e => this.onClick(e)}  className="btn btn-primary float-right mr-5 mt-3" >
-                    登录
+                    {this.state.loginValueBtn}
                 </Button>
                 {menuAndTree}
                 {showBlogSearch}
