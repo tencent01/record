@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 
+import { Modal, Button } from 'antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+
 class MenuClick extends Component {
     constructor(props) {
         super(props);
         this.state={
             translateX: 0,
-            translateY: 0,
+            translateY: 0
         };
     }
 
@@ -15,11 +18,32 @@ class MenuClick extends Component {
         }
 
         const onClickDelete=()=>{
-            this.props.onClickDeleteRecord();
+            Modal.confirm({
+                title: '请确认',
+                icon: <ExclamationCircleOutlined />,
+                content: '确认删除分类吗？',
+                okText: '确认',
+                cancelText: '取消',
+                onOk:()=>{
+                    this.props.onClickDeleteRecord();
+                    console.log("bbbbbbbbbbbbbb")}
+            });
+            // this.props.onClickDeleteRecord();
         }
 
         const onClickDeleteRecord=()=>{
-            this.props.onDeleteRecord();
+            Modal.confirm({
+                title: '请确认',
+                icon: <ExclamationCircleOutlined />,
+                content: '确认删除项目吗?',
+                okText: '确认',
+                cancelText: '取消',
+                onOk:()=>{
+                    this.props.onDeleteRecord();
+                    console.log("aaaaa")}
+
+            });
+            // this.props.onDeleteRecord();
         }
 
         const onClickNewRecord=()=>{
@@ -42,6 +66,9 @@ class MenuClick extends Component {
         const onClickSearchRecord=()=>{
             this.props.showBlogSearch(true);
         }
+
+
+
         return (
             <div  style={{transform: `translateX(${this.props.clientX}px)translateY(${this.props.clientY}px)`,position:'absolute',width:'200px',border:'1px #ccc solid',padding:'2px 0',backgroundColor:'white',boxShadow:'5px 5px 5px #ccc'}}>
 
@@ -56,6 +83,7 @@ class MenuClick extends Component {
                 <div className="menu_click_item" onClick={onClickDeleteRecord} style={{height:'25px',margin:'4px 0',padding:'0 10px',cursor:'pointer'}}>删除项目</div>
                 <div className="menu_click_item" onClick={onClickDelete} style={{height:'25px',margin:'4px 0',padding:'0 10px',cursor:'pointer'}}>删除分类</div>
                 <div className="menu_click_item" onClick={onClickAccount}  style={{height:'25px',margin:'4px 0',padding:'0 10px',cursor:'pointer'}}>账号管理</div>
+
             </div>
         );
     }

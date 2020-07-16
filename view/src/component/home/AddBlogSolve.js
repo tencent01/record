@@ -124,6 +124,7 @@ class AddBlogSolve extends Component {
         const onCheck = async () => {
             try {
                 console.log(this.state.html)
+                console.log(this.props.nodeKey)
                 if(this.state.html){
                     request.addSolve({solve:this.state.html,key:this.props.nodeKey},this.props.token).then(response=>{
                         console.log(response)

@@ -190,25 +190,7 @@ class Home extends Component {
             }
         }else{
             this.setState({
-                showLogin:false,
-                token:null,
-                showCreateAccount:false,
-                showUpdatePassword:false,
-                showRecordMenu:true,
-                showCreateRecord:false,
-                showRecordView:false,
-                recordViewData:null,
-
-                showClickMenu:false,
-                showClickMenuClientX:0,
-                showClickMenuClientY:0,
-                node:null,
-                showCreateRecordView:false,
-                showAddSolveView:false,
-                showAccountManagerView:false,
-                blogSloveMessage:false,
-                showBlogSearchView:false,
-                loginValueBtn:'登录',
+                loginValueBtn:'登录'
             })
         }
 
@@ -583,7 +565,7 @@ class Home extends Component {
         let loginView=this.state.showLogin?<Login showUpdatePassword={this.showUpdatePassword} showLogin={this.showLogin} showLoginHandler={this.showLoginHandler}  className="btn btn-primary float-right mr-5 mt-3"></Login>:"";
         let updatePassword=this.state.showUpdatePassword?<UpdatePassword showUpdatePassword={this.showUpdatePassword}></UpdatePassword>:"";
         let menuAndTree=this.state.showRecordMenu?<MenuAndTree token={this.state.token} onNodeData={this.onNodeData}  treeData={this.state.treeData} onShowMeneClick={this.onShowMeneClick} onRecordViewData={this.onRecordViewData} onShowMenuAndTree={this.onShowMenuAndTree}></MenuAndTree>:"";
-        let createBlog=this.state.showCreateRecord?<CreateBlog token={this.state.token} onGetAllFileData={this.onGetAllFileData} onNodeData={this.state.node} onShowCreateRecord={this.onShowCreateRecord}></CreateBlog>:"";
+        let createBlog=this.state.showCreateRecord?<CreateBlog loginValueBtn={this.state.loginValueBtn} token={this.state.token} onGetAllFileData={this.onGetAllFileData} onNodeData={this.state.node} onShowCreateRecord={this.onShowCreateRecord}></CreateBlog>:"";
         let showRecordView=this.state.showRecordView?<ShowBlog onShowRecordView={this.onShowRecordView} onShowRecordData={this.state.recordViewData}></ShowBlog>:"";
         let showClickMenuView=this.state.showClickMenu?<MenuClick showBlogSearch={this.showBlogSearch} onClickAccount={this.onClickAccount} onClickRefreshRecord={this.onClickRefreshRecord} onClickAddRecord={this.onClickAddRecord} onClickShowRecord={this.onClickShowRecord} onClickNewRecord={this.onClickNewRecord} onClickDeleteRecord={this.onClickDeleteRecord} onDeleteRecord={this.onDeleteRecord} onShowCreateBlog={this.onShowCreateBlog} clientX={this.state.showClickMenuClientX} clientY={this.state.showClickMenuClientY}></MenuClick>:"";
         let showCreateRecordView=this.state.showCreateRecordView?<CreateRecord token={this.state.token} onAllFileData={this.onAllFileData} newRecordPathValue={newRecordPathValue()} onClickNewRecord={this.onClickNewRecord}></CreateRecord>:"";

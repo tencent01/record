@@ -176,7 +176,9 @@ class CreateBlog extends Component {
 
         const children = [];
         for (let i = 0; i < this.state.helpusers.length; i++) {
-            children.push(<Option key={this.state.helpusers[i].username+"_"+this.state.helpusers[i].id}>{this.state.helpusers[i].username}</Option>);
+            if(this.props.loginValueBtn!=this.state.helpusers[i].username){
+                children.push(<Option key={this.state.helpusers[i].username+"_"+this.state.helpusers[i].id}>{this.state.helpusers[i].username}</Option>);
+            }
         }
 
         function handleChange(value) {

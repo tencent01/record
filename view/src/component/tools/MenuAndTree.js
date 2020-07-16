@@ -118,6 +118,7 @@ class MenuAndTree extends Component {
             console.log('Trigger Select', keys, event);
             // console.log(event.node.isLeaf)
             if(event.node.isLeaf){
+                this.props.onNodeData(event.node);
                 request.readFile({keys:keys},this.props.token).then(response=>{
                     console.log(response)
                     if(response.status==200){
